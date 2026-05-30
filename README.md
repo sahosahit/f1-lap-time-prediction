@@ -1,47 +1,33 @@
-Overview
+# F1 Lap Time Prediction & Race Performance Modeling
 
-This project analyzes the 2024 United States Grand Prix at Circuit of the Americas (COTA) using Formula 1 telemetry data from the FastF1 API.
+Analyzing the 2024 United States Grand Prix at Circuit of the Americas (COTA) using Formula 1 telemetry data from the FastF1 API.
 
-The goal is to build a race performance modeling pipeline that estimates key factors influencing lap time, including:
+The goal is to build a race performance modeling pipeline that estimates key factors influencing lap time, including driver race pace, tyre degradation, fuel burn effects, and strategy implications.
 
-driver race pace
+Combines machine learning, statistical modeling, and motorsport performance analysis to simulate race conditions and extract insights similar to those used by F1 performance and strategy engineers.
 
-tyre degradation
+## Key Results
 
-fuel burn effects
+| Factor | Estimated Effect |
+|--------|------------------|
+| Fuel Burn | 0.060 sec/lap improvement |
+| Soft Tyre Degradation | 0.066 sec/lap |
+| Medium Tyre Degradation | 0.029 sec/lap |
+| Hard Tyre Degradation | 0.016 sec/lap |
+| Lap Time Prediction (Hold-out MAE) | 0.38 sec |
+| Lap Time Prediction (5-fold CV MAE) | ~1.0 sec |
+| Best Model | Random Forest (tuned: max_depth=20, min_samples_leaf=5, n_estimators=500) |
 
-strategy implications
+**Note:** Cross-validation reveals the true generalization error (~1.0 sec) is higher than the single hold-out split (0.38 sec), indicating the default model overfits. The tuned model with regularization generalizes better.
 
-The project combines machine learning, statistical modeling, and motorsport performance analysis to simulate race conditions and extract insights similar to those used by F1 performance and strategy engineers.
+## Project Workflow
 
-📊 Key Results
-Factor	Estimated Effect
-Fuel Burn	0.060 sec / lap improvement
-Soft Tyre Degradation	0.066 sec / lap
-Medium Tyre Degradation	0.029 sec / lap
-Hard Tyre Degradation	0.016 sec / lap
-Lap Time Prediction Error	MAE ≈ 0.38 sec
-
-These results align closely with typical Formula 1 race performance models.
-
-🧠 Project Goals
-
-This analysis aims to answer several race engineering questions:
-
-Which drivers had the best race pace?
-
-How quickly do tyres degrade over a stint?
-
-How much lap time improvement comes from fuel burn?
-
-What are the strategy implications for different tyre compounds?
-
-🏎 Project Workflow
-Race Data Extraction
+```
+Race Data Extraction (FastF1 API)
         ↓
-Feature Engineering
+Feature Engineering (tyre, fuel, driver encoding)
         ↓
-Lap Time Prediction (ML Models)
+Lap Time Prediction (ML Models + Cross-Validation + Hyperparameter Tuning)
         ↓
 Driver Pace Decomposition
         ↓
@@ -49,130 +35,122 @@ Fuel Burn Modeling
         ↓
 Tyre Degradation Estimation
         ↓
-Strategy Insights
-📂 Project Structure
-f1-lap-time-prediction-cota/
-│
+Strategy Insights (Monte Carlo Stint Simulation)
+```
+
+## Project Structure
+
+```
+f1-lap-time-prediction/
 ├── notebooks/
-│   01_data_extraction.ipynb
-│   02_feature_engineering.ipynb
-│   03_model_training.ipynb
-│   04_feature_importance.ipynb
-│   05_driver_pace_decomposition.ipynb
-│   06_fuel_and_tyre_model.ipynb
-│   07_stint_performance_simulator.ipynb
-│   08_final_report.ipynb
-│
+│   ├── data_extraction.ipynb              # FastF1 data pull & cleaning
+│   ├── feature_engineering.ipynb          # Feature creation
+│   ├── model_training_and_evaluation.ipynb # ML models, CV, hyperparameter tuning
+│   ├── driver_pace_decomposition.ipynb    # Driver performance analysis
+│   ├── fuel_and_tyre_model.ipynb          # Fuel burn & tyre degradation
+│   ├── stint_performance_stimulator.ipynb # Strategy simulation
+│   └── final_report.ipynb                 # Summary & visualizations
 ├── data/
-│   raw/
-│   processed/
-│
-├── cache/
-│
+│   ├── raw/cota_2024_laps.csv
+│   └── processed/cota_2024_features.csv
+├── cache/                                  # FastF1 API cache
+├── src/
+├── requirements.txt
 └── README.md
-📈 Key Analyses
-Driver Race Pace
+```
 
-Driver performance is estimated by removing fuel effects and tyre degradation from lap times.
+## ML Model Training & Evaluation
 
-This allows us to identify true driver pace relative to the field.
+### Features Used
+- `DriverEncoded` — Categorical driver identifier
+- `CompoundEncoded` — Tyre compound (SOFT=0, MEDIUM=1, HARD=2)
+- `TyreLife` — Laps on current tyre set
+- `TyreLifeSquared` — Non-linear tyre degradation (captures cliff effect)
+- `FuelLoadProxy` — Approximated remaining fuel (56 - LapNumber)
 
-Tyre Degradation Modeling
+### Model Comparison
 
-Tyre performance over a stint is estimated using regression models applied to fuel and driver corrected lap times.
+| Model | Hold-out MAE | Hold-out RMSE | 5-Fold CV MAE |
+|-------|-------------|---------------|----------------|
+| Linear Regression | 0.700 sec | 0.919 sec | 0.832 ± 0.140 |
+| Random Forest (default) | 0.379 sec | 0.562 sec | 1.008 ± 0.133 |
+| Gradient Boosting | 0.391 sec | 0.559 sec | 0.945 ± 0.169 |
+| **Random Forest (tuned)** | **0.433 sec** | - | **0.984** |
 
-Observed degradation rates:
+### Hyperparameter Tuning (GridSearchCV)
+```
+Best Parameters: max_depth=20, min_samples_leaf=5, n_estimators=500
+```
 
-Soft tyres degrade fastest
+The tuned model trades slightly worse hold-out performance for better generalization (less overfitting).
 
-Medium tyres offer balanced performance
+### Key Insight: Overfitting Detection
 
-Hard tyres provide stability over longer stints
+The default Random Forest achieves 0.38 MAE on the hold-out set but ~1.0 MAE on cross-validation. This gap indicates overfitting to the specific train/test split. Cross-validation provides a more honest estimate of real-world performance.
 
-Fuel Burn Effect
+## Driver Race Pace
 
-Fuel load decreases throughout the race, making the car progressively faster.
+Driver performance estimated by removing fuel effects and tyre degradation from lap times:
 
-The model estimates:
+| Driver | Pace Delta (vs field) |
+|--------|----------------------|
+| LEC | -1.24 sec (fastest) |
+| SAI | -1.07 sec |
+| NOR | -0.98 sec |
+| VER | -0.88 sec |
+| BOT | +1.28 sec (slowest) |
 
-Fuel burn ≈ 0.060 sec improvement per lap
+## Tyre Degradation
 
-Over the full race distance, this results in roughly:
+Degradation rates estimated via linear regression on fuel-corrected lap times:
 
-≈ 3.3 seconds improvement
-Lap Time Prediction
+- **Soft:** 0.066 sec/lap (fastest degradation, limited data: 3 laps)
+- **Medium:** 0.029 sec/lap (balanced)
+- **Hard:** 0.016 sec/lap (most stable)
 
-Machine learning models were trained to predict lap time using features such as:
+## Fuel Burn Effect
 
-tyre compound
+- Fuel improvement: **0.060 sec/lap** (as fuel burns, car gets lighter and faster)
+- Race-long improvement: ~3.3 seconds over 56 laps
 
-tyre life
+## Strategy Insights
 
-fuel load proxy
+20-lap stint simulation results:
+- Soft tyres: 1989.14 sec total (fastest initial pace, highest degradation)
+- Medium tyres: 1982.11 sec total (best compromise)
+- Hard tyres: 1979.64 sec total (best overall for long stints)
 
-driver encoding
+**Conclusion:** Hard tyres optimal for longer stints; soft tyres suited only for short aggressive stints.
 
-Models tested:
+## How to Run
 
-Linear Regression
+```bash
+# Install dependencies
+pip install -r requirements.txt
 
-Random Forest
+# Run notebooks in order
+jupyter notebook notebooks/
+```
 
-Gradient Boosting
+**Note:** FastF1 API caches data locally. First run will download ~50MB of telemetry data.
 
-Best performance achieved:
+## Technologies
 
-Mean Absolute Error ≈ 0.38 sec
-🛠 Technologies Used
+- **Python** — Primary language
+- **FastF1** — Official F1 telemetry API
+- **scikit-learn** — ML models (Random Forest, Gradient Boosting, Linear Regression), GridSearchCV, cross-validation
+- **pandas / NumPy** — Data processing
+- **matplotlib / seaborn** — Visualization
+- **SciPy** — Statistical analysis
 
-Python
+## Future Work
 
-FastF1
+- Non-linear tyre degradation modeling (piecewise regression for cliff effect)
+- Traffic and DRS effects on lap time
+- Track temperature influence
+- Multi-race datasets for stronger generalization
+- Temporal cross-validation (train on early laps, test on late laps)
 
-Pandas
+## Data Source
 
-NumPy
-
-Scikit-learn
-
-Matplotlib
-
-Seaborn
-
-🏁 Strategy Insights
-
-Analysis of tyre degradation and fuel burn suggests:
-
-Soft tyres are best suited for short aggressive stints
-
-Medium tyres provide the best compromise between pace and durability
-
-Hard tyres are optimal for longer stints with minimal degradation
-
-These insights are consistent with real-world race strategy decisions.
-
-🚀 Future Work
-
-Potential improvements include:
-
-incorporating traffic and DRS effects
-
-modeling track temperature influence
-
-building a race strategy simulator
-
-adding multi-race datasets for stronger models
-
-📚 Data Source
-
-Race data obtained from the FastF1 API, which provides access to official Formula 1 telemetry and timing data.
-
-https://theoehrly.github.io/Fast-F1/
-
-👨‍💻 Author
-
-Formula 1 enthusiast exploring motorsport data science, race strategy modeling, and performance analytics.
-
-⭐ Why This Project Matters
-
-Modern Formula 1 relies heavily on data-driven performance analysis. This project demonstrates how telemetry data can be used to build models that approximate real race engineering insights.
+Race data from the [FastF1 API](https://theoehrly.github.io/Fast-F1/) — official Formula 1 telemetry and timing data.
