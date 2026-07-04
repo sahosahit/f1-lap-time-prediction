@@ -113,7 +113,11 @@ async def driver_pace_analysis():
     if data is None:
         raise HTTPException(status_code=503, detail="No race data loaded")
 
-    pace = decompose_driver_pace(data)
+    df = data.copy()
+    if 'LapNumber' not in df.columns:
+        df['LapNumber'] = df.groupby('Driver').cumcount() + 1
+
+    pace = decompose_driver_pace(df)
     return {
         "race": "COTA 2024",
         "rankings": [
