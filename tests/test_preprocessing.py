@@ -24,6 +24,6 @@ class TestFilterOutliers:
         assert len(filtered) == len(data)
 
     def test_custom_column(self):
-        data = pd.DataFrame({'speed': [200, 201, 199, 500]})
+        data = pd.DataFrame({'speed': [200, 201, 199, 200, 201, 199, 200, 201, 199, 200, 500]})
         filtered = filter_outliers(data, column='speed', std_threshold=2)
         assert 500 not in filtered['speed'].values
