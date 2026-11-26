@@ -8,7 +8,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,ALB,7,131.613,1,MEDIUM,6,True,True,False,True,50
 2024_saudi_arabia,ALB,8,179.983,2,HARD,0,True,False,True,True,50
 2024_saudi_arabia,ALB,9,145.427,2,HARD,1,True,False,False,True,50
-2024_saudi_arabia,ALB,10,100.318,2,HARD,2,True,False,False,False,50
+2024_saudi_arabia,ALB,10,100.318,2,HARD,2,True,False,False,True,50
 2024_saudi_arabia,ALB,11,96.232,2,HARD,3,True,False,False,False,50
 2024_saudi_arabia,ALB,12,95.441,2,HARD,4,True,False,False,False,50
 2024_saudi_arabia,ALB,13,95.213,2,HARD,5,True,False,False,False,50
@@ -58,7 +58,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,ALO,7,126.883,1,MEDIUM,7,False,True,False,True,50
 2024_saudi_arabia,ALO,8,185.292,2,HARD,1,False,False,True,True,50
 2024_saudi_arabia,ALO,9,154.968,2,HARD,2,False,False,False,True,50
-2024_saudi_arabia,ALO,10,97.296,2,HARD,3,False,False,False,False,50
+2024_saudi_arabia,ALO,10,97.296,2,HARD,3,False,False,False,True,50
 2024_saudi_arabia,ALO,11,94.53,2,HARD,4,False,False,False,False,50
 2024_saudi_arabia,ALO,12,94.735,2,HARD,5,False,False,False,False,50
 2024_saudi_arabia,ALO,13,94.664,2,HARD,6,False,False,False,False,50
@@ -108,7 +108,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,BEA,7,131.168,1,SOFT,6,True,True,False,True,50
 2024_saudi_arabia,BEA,8,179.588,2,HARD,0,True,False,True,True,50
 2024_saudi_arabia,BEA,9,147.117,2,HARD,1,True,False,False,True,50
-2024_saudi_arabia,BEA,10,98.427,2,HARD,2,True,False,False,False,50
+2024_saudi_arabia,BEA,10,98.427,2,HARD,2,True,False,False,True,50
 2024_saudi_arabia,BEA,11,95.645,2,HARD,3,True,False,False,False,50
 2024_saudi_arabia,BEA,12,94.907,2,HARD,4,True,False,False,False,50
 2024_saudi_arabia,BEA,13,95.153,2,HARD,5,True,False,False,False,50
@@ -158,7 +158,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,BOT,7,133.58,1,SOFT,6,True,True,False,True,50
 2024_saudi_arabia,BOT,8,177.332,2,HARD,0,True,False,True,True,50
 2024_saudi_arabia,BOT,9,141.83,2,HARD,1,True,False,False,True,50
-2024_saudi_arabia,BOT,10,100.082,2,HARD,2,True,False,False,False,50
+2024_saudi_arabia,BOT,10,100.082,2,HARD,2,True,False,False,True,50
 2024_saudi_arabia,BOT,11,96.456,2,HARD,3,True,False,False,False,50
 2024_saudi_arabia,BOT,12,95.827,2,HARD,4,True,False,False,False,50
 2024_saudi_arabia,BOT,13,95.447,2,HARD,5,True,False,False,False,50
@@ -208,7 +208,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,HAM,7,128.128,1,MEDIUM,6,True,False,False,True,50
 2024_saudi_arabia,HAM,8,173.631,1,MEDIUM,7,True,False,False,True,50
 2024_saudi_arabia,HAM,9,159.191,1,MEDIUM,8,True,False,False,True,50
-2024_saudi_arabia,HAM,10,95.257,1,MEDIUM,9,True,False,False,False,50
+2024_saudi_arabia,HAM,10,95.257,1,MEDIUM,9,True,False,False,True,50
 2024_saudi_arabia,HAM,11,94.334,1,MEDIUM,10,True,False,False,False,50
 2024_saudi_arabia,HAM,12,94.018,1,MEDIUM,11,True,False,False,False,50
 2024_saudi_arabia,HAM,13,95.312,1,MEDIUM,12,True,False,False,False,50
@@ -258,7 +258,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,HUL,7,129.724,1,MEDIUM,6,True,False,False,True,50
 2024_saudi_arabia,HUL,8,170.478,1,MEDIUM,7,True,False,False,True,50
 2024_saudi_arabia,HUL,9,153.089,1,MEDIUM,8,True,False,False,True,50
-2024_saudi_arabia,HUL,10,97.796,1,MEDIUM,9,True,False,False,False,50
+2024_saudi_arabia,HUL,10,97.796,1,MEDIUM,9,True,False,False,True,50
 2024_saudi_arabia,HUL,11,94.864,1,MEDIUM,10,True,False,False,False,50
 2024_saudi_arabia,HUL,12,94.605,1,MEDIUM,11,True,False,False,False,50
 2024_saudi_arabia,HUL,13,95.367,1,MEDIUM,12,True,False,False,False,50
@@ -308,7 +308,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,LEC,7,124.831,1,MEDIUM,6,True,True,False,True,50
 2024_saudi_arabia,LEC,8,186.406,2,HARD,0,True,False,True,True,50
 2024_saudi_arabia,LEC,9,158.648,2,HARD,1,True,False,False,True,50
-2024_saudi_arabia,LEC,10,96.082,2,HARD,2,True,False,False,False,50
+2024_saudi_arabia,LEC,10,96.082,2,HARD,2,True,False,False,True,50
 2024_saudi_arabia,LEC,11,94.443,2,HARD,3,True,False,False,False,50
 2024_saudi_arabia,LEC,12,93.599,2,HARD,4,True,False,False,False,50
 2024_saudi_arabia,LEC,13,94.627,2,HARD,5,True,False,False,False,50
@@ -358,7 +358,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,MAG,7,131.564,1,MEDIUM,6,True,True,False,True,50
 2024_saudi_arabia,MAG,8,180.027,2,HARD,0,True,False,True,True,50
 2024_saudi_arabia,MAG,9,145.832,2,HARD,1,True,False,False,True,50
-2024_saudi_arabia,MAG,10,99.463,2,HARD,2,True,False,False,False,50
+2024_saudi_arabia,MAG,10,99.463,2,HARD,2,True,False,False,True,50
 2024_saudi_arabia,MAG,11,96.036,2,HARD,3,True,False,False,False,50
 2024_saudi_arabia,MAG,12,95.229,2,HARD,4,True,False,False,False,50
 2024_saudi_arabia,MAG,13,95.062,2,HARD,5,True,False,False,False,50
@@ -408,7 +408,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,NOR,7,127.025,1,MEDIUM,6,True,False,False,True,50
 2024_saudi_arabia,NOR,8,174.005,1,MEDIUM,7,True,False,False,True,50
 2024_saudi_arabia,NOR,9,161.791,1,MEDIUM,8,True,False,False,True,50
-2024_saudi_arabia,NOR,10,94.352,1,MEDIUM,9,True,False,False,False,50
+2024_saudi_arabia,NOR,10,94.352,1,MEDIUM,9,True,False,False,True,50
 2024_saudi_arabia,NOR,11,93.674,1,MEDIUM,10,True,False,False,False,50
 2024_saudi_arabia,NOR,12,93.877,1,MEDIUM,11,True,False,False,False,50
 2024_saudi_arabia,NOR,13,95.131,1,MEDIUM,12,True,False,False,False,50
@@ -458,7 +458,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,OCO,7,132.702,1,MEDIUM,6,True,True,False,True,50
 2024_saudi_arabia,OCO,8,176.368,2,HARD,0,True,False,True,True,50
 2024_saudi_arabia,OCO,9,143.747,2,HARD,1,True,False,False,True,50
-2024_saudi_arabia,OCO,10,99.439,2,HARD,2,True,False,False,False,50
+2024_saudi_arabia,OCO,10,99.439,2,HARD,2,True,False,False,True,50
 2024_saudi_arabia,OCO,11,95.969,2,HARD,3,True,False,False,False,50
 2024_saudi_arabia,OCO,12,95.4,2,HARD,4,True,False,False,False,50
 2024_saudi_arabia,OCO,13,95.107,2,HARD,5,True,False,False,False,50
@@ -507,7 +507,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,PER,7,124.615,1,MEDIUM,6,True,True,False,True,50
 2024_saudi_arabia,PER,8,187.369,2,HARD,0,True,False,True,True,50
 2024_saudi_arabia,PER,9,158.896,2,HARD,1,True,False,False,True,50
-2024_saudi_arabia,PER,10,96.005,2,HARD,2,True,False,False,False,50
+2024_saudi_arabia,PER,10,96.005,2,HARD,2,True,False,False,True,50
 2024_saudi_arabia,PER,11,93.859,2,HARD,3,True,False,False,False,50
 2024_saudi_arabia,PER,12,93.93,2,HARD,4,True,False,False,False,50
 2024_saudi_arabia,PER,13,94.053,2,HARD,5,True,False,False,False,50
@@ -557,7 +557,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,PIA,7,126.72,1,MEDIUM,6,True,True,False,True,50
 2024_saudi_arabia,PIA,8,184.373,2,HARD,1,False,False,True,True,50
 2024_saudi_arabia,PIA,9,156.398,2,HARD,2,False,False,False,True,50
-2024_saudi_arabia,PIA,10,96.768,2,HARD,3,False,False,False,False,50
+2024_saudi_arabia,PIA,10,96.768,2,HARD,3,False,False,False,True,50
 2024_saudi_arabia,PIA,11,94.448,2,HARD,4,False,False,False,False,50
 2024_saudi_arabia,PIA,12,93.946,2,HARD,5,False,False,False,False,50
 2024_saudi_arabia,PIA,13,94.34,2,HARD,6,False,False,False,False,50
@@ -607,7 +607,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,RIC,7,132.474,1,MEDIUM,6,True,True,False,True,50
 2024_saudi_arabia,RIC,8,193.712,2,HARD,0,True,False,True,True,50
 2024_saudi_arabia,RIC,9,129.998,2,HARD,1,True,False,False,True,50
-2024_saudi_arabia,RIC,10,99.99,2,HARD,2,True,False,False,False,50
+2024_saudi_arabia,RIC,10,99.99,2,HARD,2,True,False,False,True,50
 2024_saudi_arabia,RIC,11,96.819,2,HARD,3,True,False,False,False,50
 2024_saudi_arabia,RIC,12,96.095,2,HARD,4,True,False,False,False,50
 2024_saudi_arabia,RIC,13,96.337,2,HARD,5,True,False,False,False,50
@@ -656,7 +656,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,RUS,7,128.836,1,MEDIUM,6,True,True,False,True,50
 2024_saudi_arabia,RUS,8,183.576,2,HARD,0,True,False,True,True,50
 2024_saudi_arabia,RUS,9,151.48,2,HARD,1,True,False,False,True,50
-2024_saudi_arabia,RUS,10,97.943,2,HARD,2,True,False,False,False,50
+2024_saudi_arabia,RUS,10,97.943,2,HARD,2,True,False,False,True,50
 2024_saudi_arabia,RUS,11,95.048,2,HARD,3,True,False,False,False,50
 2024_saudi_arabia,RUS,12,94.488,2,HARD,4,True,False,False,False,50
 2024_saudi_arabia,RUS,13,95.082,2,HARD,5,True,False,False,False,50
@@ -706,7 +706,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,SAR,7,134.35,1,MEDIUM,6,True,True,False,True,50
 2024_saudi_arabia,SAR,8,177.288,2,HARD,0,True,False,True,True,50
 2024_saudi_arabia,SAR,9,141.181,2,HARD,1,True,False,False,True,50
-2024_saudi_arabia,SAR,10,100.141,2,HARD,2,True,False,False,False,50
+2024_saudi_arabia,SAR,10,100.141,2,HARD,2,True,False,False,True,50
 2024_saudi_arabia,SAR,11,96.468,2,HARD,3,True,False,False,False,50
 2024_saudi_arabia,SAR,12,95.642,2,HARD,4,True,False,False,False,50
 2024_saudi_arabia,SAR,13,95.751,2,HARD,5,True,False,False,False,50
@@ -760,7 +760,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,TSU,7,130.914,1,MEDIUM,6,True,True,False,True,50
 2024_saudi_arabia,TSU,8,179.562,2,HARD,0,True,False,True,True,50
 2024_saudi_arabia,TSU,9,147.896,2,HARD,1,True,False,False,True,50
-2024_saudi_arabia,TSU,10,99.222,2,HARD,2,True,False,False,False,50
+2024_saudi_arabia,TSU,10,99.222,2,HARD,2,True,False,False,True,50
 2024_saudi_arabia,TSU,11,95.738,2,HARD,3,True,False,False,False,50
 2024_saudi_arabia,TSU,12,95.263,2,HARD,4,True,False,False,False,50
 2024_saudi_arabia,TSU,13,95.325,2,HARD,5,True,False,False,False,50
@@ -809,7 +809,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,VER,7,122.919,1,MEDIUM,6,True,True,False,True,50
 2024_saudi_arabia,VER,8,189.083,2,HARD,0,True,False,True,True,50
 2024_saudi_arabia,VER,9,160.995,2,HARD,1,True,False,False,True,50
-2024_saudi_arabia,VER,10,95.024,2,HARD,2,True,False,False,False,50
+2024_saudi_arabia,VER,10,95.024,2,HARD,2,True,False,False,True,50
 2024_saudi_arabia,VER,11,93.61,2,HARD,3,True,False,False,False,50
 2024_saudi_arabia,VER,12,93.321,2,HARD,4,True,False,False,False,50
 2024_saudi_arabia,VER,13,93.144,2,HARD,5,True,False,False,False,50
@@ -859,7 +859,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_saudi_arabia,ZHO,7,132.76,1,MEDIUM,6,True,False,False,True,50
 2024_saudi_arabia,ZHO,8,166.499,1,MEDIUM,7,True,False,False,True,50
 2024_saudi_arabia,ZHO,9,149.482,1,MEDIUM,8,True,False,False,True,50
-2024_saudi_arabia,ZHO,10,98.417,1,MEDIUM,9,True,False,False,False,50
+2024_saudi_arabia,ZHO,10,98.417,1,MEDIUM,9,True,False,False,True,50
 2024_saudi_arabia,ZHO,11,95.695,1,MEDIUM,10,True,False,False,False,50
 2024_saudi_arabia,ZHO,12,94.998,1,MEDIUM,11,True,False,False,False,50
 2024_saudi_arabia,ZHO,13,95.355,1,MEDIUM,12,True,False,False,False,50

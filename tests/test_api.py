@@ -24,7 +24,7 @@ def test_health_reports_model_and_races(client):
     data = client.get("/health").json()
     assert data["status"] == "healthy"
     assert data["model_loaded"] is True
-    assert data["races"] == 16
+    assert data["races"] == len(client.get("/races").json()["races"]) >= 16
 
 
 def test_races_and_drivers_are_listed(client):
@@ -78,3 +78,14 @@ def test_stint_on_an_unfitted_compound_or_past_the_flag_is_400(client):
         body = {"race": RACE, "compound": next(iter(analysis["not_fitted"])),
                 "stint_length": 10, "start_lap": 5}
         assert client.post("/predict/stint", json=body).status_code == 400
+
+
+def test_stint_with_a_nonsense_base_pace_is_rejected(client):
+    compound = next(iter(client.get(f"/analysis/{RACE}").json()["degradation"]))
+    body = {"race": RACE, "compound": compound, "stint_length": 10, "start_lap": 5,
+            "base_pace": -50}
+    assert client.post("/predict/stint", json=body).status_code == 422
+
+
+def test_analysis_carries_warnings(client):
+    assert isinstance(client.get(f"/analysis/{RACE}").json()["warnings"], list)

@@ -30,7 +30,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,ALB,29,144.784,3,HARD,5,True,False,False,True,56
 2024_china,ALB,30,141.349,3,HARD,6,True,False,False,True,56
 2024_china,ALB,31,142.128,3,HARD,7,True,False,False,True,56
-2024_china,ALB,32,102.221,3,HARD,8,True,False,False,False,56
+2024_china,ALB,32,102.221,3,HARD,8,True,False,False,True,56
 2024_china,ALB,33,101.269,3,HARD,9,True,False,False,False,56
 2024_china,ALB,34,100.79,3,HARD,10,True,False,False,False,56
 2024_china,ALB,35,101.335,3,HARD,11,True,False,False,False,56
@@ -86,7 +86,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,ALO,29,145.818,3,SOFT,5,True,False,False,True,56
 2024_china,ALO,30,142.1,3,SOFT,6,True,False,False,True,56
 2024_china,ALO,31,144.857,3,SOFT,7,True,False,False,True,56
-2024_china,ALO,32,100.19,3,SOFT,8,True,False,False,False,56
+2024_china,ALO,32,100.19,3,SOFT,8,True,False,False,True,56
 2024_china,ALO,33,99.48,3,SOFT,9,True,False,False,False,56
 2024_china,ALO,34,99.452,3,SOFT,10,True,False,False,False,56
 2024_china,ALO,35,99.817,3,SOFT,11,True,False,False,False,56
@@ -161,7 +161,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,GAS,29,146.365,3,HARD,5,True,False,False,True,56
 2024_china,GAS,30,140.888,3,HARD,6,True,False,False,True,56
 2024_china,GAS,31,139.27,3,HARD,7,True,False,False,True,56
-2024_china,GAS,32,101.886,3,HARD,8,True,False,False,False,56
+2024_china,GAS,32,101.886,3,HARD,8,True,False,False,True,56
 2024_china,GAS,33,102.047,3,HARD,9,True,False,False,False,56
 2024_china,GAS,34,101.522,3,HARD,10,True,False,False,False,56
 2024_china,GAS,35,101.078,3,HARD,11,True,False,False,False,56
@@ -217,7 +217,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,HAM,29,144.889,3,HARD,7,True,False,False,True,56
 2024_china,HAM,30,141.1,3,HARD,8,True,False,False,True,56
 2024_china,HAM,31,142.834,3,HARD,9,True,False,False,True,56
-2024_china,HAM,32,101.118,3,HARD,10,True,False,False,False,56
+2024_china,HAM,32,101.118,3,HARD,10,True,False,False,True,56
 2024_china,HAM,33,100.857,3,HARD,11,True,False,False,False,56
 2024_china,HAM,34,100.835,3,HARD,12,True,False,False,False,56
 2024_china,HAM,35,100.908,3,HARD,13,True,False,False,False,56
@@ -273,7 +273,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,HUL,29,145.148,3,HARD,5,True,False,False,True,56
 2024_china,HUL,30,141.361,3,HARD,6,True,False,False,True,56
 2024_china,HUL,31,143.141,3,HARD,7,True,False,False,True,56
-2024_china,HUL,32,100.815,3,HARD,8,True,False,False,False,56
+2024_china,HUL,32,100.815,3,HARD,8,True,False,False,True,56
 2024_china,HUL,33,100.879,3,HARD,9,True,False,False,False,56
 2024_china,HUL,34,100.864,3,HARD,10,True,False,False,False,56
 2024_china,HUL,35,101.035,3,HARD,11,True,False,False,False,56
@@ -329,7 +329,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,LEC,29,146.334,2,HARD,7,True,False,False,True,56
 2024_china,LEC,30,140.784,2,HARD,8,True,False,False,True,56
 2024_china,LEC,31,146.766,2,HARD,9,True,False,False,True,56
-2024_china,LEC,32,99.525,2,HARD,10,True,False,False,False,56
+2024_china,LEC,32,99.525,2,HARD,10,True,False,False,True,56
 2024_china,LEC,33,99.384,2,HARD,11,True,False,False,False,56
 2024_china,LEC,34,99.561,2,HARD,12,True,False,False,False,56
 2024_china,LEC,35,99.707,2,HARD,13,True,False,False,False,56
@@ -385,7 +385,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,MAG,29,117.805,3,MEDIUM,1,True,False,False,True,56
 2024_china,MAG,30,141.596,3,MEDIUM,2,True,False,False,True,56
 2024_china,MAG,31,137.804,3,MEDIUM,3,True,False,False,True,56
-2024_china,MAG,32,101.74,3,MEDIUM,4,True,False,False,False,56
+2024_china,MAG,32,101.74,3,MEDIUM,4,True,False,False,True,56
 2024_china,MAG,33,102.473,3,MEDIUM,5,True,False,False,False,56
 2024_china,MAG,34,103.518,3,MEDIUM,6,True,False,False,False,56
 2024_china,MAG,35,102.616,3,MEDIUM,7,True,False,False,False,56
@@ -441,7 +441,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,NOR,29,147.449,2,HARD,6,True,False,False,True,56
 2024_china,NOR,30,139.874,2,HARD,7,True,False,False,True,56
 2024_china,NOR,31,148.01,2,HARD,8,True,False,False,True,56
-2024_china,NOR,32,98.957,2,HARD,9,True,False,False,False,56
+2024_china,NOR,32,98.957,2,HARD,9,True,False,False,True,56
 2024_china,NOR,33,98.751,2,HARD,10,True,False,False,False,56
 2024_china,NOR,34,99.022,2,HARD,11,True,False,False,False,56
 2024_china,NOR,35,99.094,2,HARD,12,True,False,False,False,56
@@ -497,7 +497,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,OCO,29,144.917,3,HARD,5,True,False,False,True,56
 2024_china,OCO,30,141.322,3,HARD,6,True,False,False,True,56
 2024_china,OCO,31,142.345,3,HARD,7,True,False,False,True,56
-2024_china,OCO,32,101.902,3,HARD,8,True,False,False,False,56
+2024_china,OCO,32,101.902,3,HARD,8,True,False,False,True,56
 2024_china,OCO,33,100.937,3,HARD,9,True,False,False,False,56
 2024_china,OCO,34,100.972,3,HARD,10,True,False,False,False,56
 2024_china,OCO,35,101.009,3,HARD,11,True,False,False,False,56
@@ -553,7 +553,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,PER,29,145.947,3,HARD,5,True,False,False,True,56
 2024_china,PER,30,141.644,3,HARD,6,True,False,False,True,56
 2024_china,PER,31,145.856,3,HARD,7,True,False,False,True,56
-2024_china,PER,32,99.731,3,HARD,8,True,False,False,False,56
+2024_china,PER,32,99.731,3,HARD,8,True,False,False,True,56
 2024_china,PER,33,99.388,3,HARD,9,True,False,False,False,56
 2024_china,PER,34,99.512,3,HARD,10,True,False,False,False,56
 2024_china,PER,35,99.698,3,HARD,11,True,False,False,False,56
@@ -609,7 +609,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,PIA,29,145.655,3,HARD,4,True,False,False,True,56
 2024_china,PIA,30,141.071,3,HARD,5,True,False,False,True,56
 2024_china,PIA,31,144.001,3,HARD,6,True,False,False,True,56
-2024_china,PIA,32,101.017,3,HARD,7,True,False,False,False,56
+2024_china,PIA,32,101.017,3,HARD,7,True,False,False,True,56
 2024_china,PIA,33,100.725,3,HARD,8,True,False,False,False,56
 2024_china,PIA,34,100.748,3,HARD,9,True,False,False,False,56
 2024_china,PIA,35,100.397,3,HARD,10,True,False,False,False,56
@@ -665,7 +665,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,RIC,29,145.366,2,MEDIUM,14,True,False,False,True,56
 2024_china,RIC,30,141.054,2,MEDIUM,15,True,False,False,True,56
 2024_china,RIC,31,143.797,2,MEDIUM,16,True,False,False,True,56
-2024_china,RIC,32,104.075,2,MEDIUM,17,True,False,False,False,56
+2024_china,RIC,32,104.075,2,MEDIUM,17,True,False,False,True,56
 2024_china,RIC,33,115.415,2,MEDIUM,18,True,False,False,False,56
 2024_china,RUS,1,106.184,1,MEDIUM,0,True,False,False,False,56
 2024_china,RUS,2,101.696,1,MEDIUM,1,True,False,False,False,56
@@ -698,7 +698,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,RUS,29,145.225,3,HARD,5,True,False,False,True,56
 2024_china,RUS,30,141.655,3,HARD,6,True,False,False,True,56
 2024_china,RUS,31,144.253,3,HARD,7,True,False,False,True,56
-2024_china,RUS,32,100.69,3,HARD,8,True,False,False,False,56
+2024_china,RUS,32,100.69,3,HARD,8,True,False,False,True,56
 2024_china,RUS,33,100.476,3,HARD,9,True,False,False,False,56
 2024_china,RUS,34,100.467,3,HARD,10,True,False,False,False,56
 2024_china,RUS,35,100.493,3,HARD,11,True,False,False,False,56
@@ -754,7 +754,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,SAI,29,145.926,2,HARD,11,True,False,False,True,56
 2024_china,SAI,30,141.876,2,HARD,12,True,False,False,True,56
 2024_china,SAI,31,144.652,2,HARD,13,True,False,False,True,56
-2024_china,SAI,32,100.401,2,HARD,14,True,False,False,False,56
+2024_china,SAI,32,100.401,2,HARD,14,True,False,False,True,56
 2024_china,SAI,33,100.048,2,HARD,15,True,False,False,False,56
 2024_china,SAI,34,100.416,2,HARD,16,True,False,False,False,56
 2024_china,SAI,35,100.311,2,HARD,17,True,False,False,False,56
@@ -809,7 +809,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,SAR,29,144.794,3,HARD,4,True,False,False,True,56
 2024_china,SAR,30,141.607,3,HARD,5,True,False,False,True,56
 2024_china,SAR,31,141.503,3,HARD,6,True,False,False,True,56
-2024_china,SAR,32,102.185,3,HARD,7,True,False,False,False,56
+2024_china,SAR,32,102.185,3,HARD,7,True,False,False,True,56
 2024_china,SAR,33,102.482,3,HARD,8,True,False,False,False,56
 2024_china,SAR,34,101.233,3,HARD,9,True,False,False,False,56
 2024_china,SAR,35,101.096,3,HARD,10,True,False,False,False,56
@@ -865,7 +865,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,STR,29,104.547,4,MEDIUM,2,True,False,False,True,56
 2024_china,STR,30,103.268,4,MEDIUM,3,True,False,False,True,56
 2024_china,STR,31,124.24,4,MEDIUM,4,True,False,False,True,56
-2024_china,STR,32,101.485,4,MEDIUM,5,True,False,False,False,56
+2024_china,STR,32,101.485,4,MEDIUM,5,True,False,False,True,56
 2024_china,STR,33,102.201,4,MEDIUM,6,True,False,False,False,56
 2024_china,STR,34,102.969,4,MEDIUM,7,True,False,False,False,56
 2024_china,STR,35,105.678,4,MEDIUM,8,True,True,False,False,56
@@ -947,7 +947,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,VER,29,146.57,3,HARD,5,True,False,False,True,56
 2024_china,VER,30,140.118,3,HARD,6,True,False,False,True,56
 2024_china,VER,31,148.77,3,HARD,7,True,False,False,True,56
-2024_china,VER,32,98.604,3,HARD,8,True,False,False,False,56
+2024_china,VER,32,98.604,3,HARD,8,True,False,False,True,56
 2024_china,VER,33,98.406,3,HARD,9,True,False,False,False,56
 2024_china,VER,34,98.426,3,HARD,10,True,False,False,False,56
 2024_china,VER,35,98.765,3,HARD,11,True,False,False,False,56
@@ -1003,7 +1003,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_china,ZHO,29,146.076,3,HARD,5,True,False,False,True,56
 2024_china,ZHO,30,141.354,3,HARD,6,True,False,False,True,56
 2024_china,ZHO,31,139.42,3,HARD,7,True,False,False,True,56
-2024_china,ZHO,32,102.002,3,HARD,8,True,False,False,False,56
+2024_china,ZHO,32,102.002,3,HARD,8,True,False,False,True,56
 2024_china,ZHO,33,102.746,3,HARD,9,True,False,False,False,56
 2024_china,ZHO,34,101.72,3,HARD,10,True,False,False,False,56
 2024_china,ZHO,35,101.366,3,HARD,11,True,False,False,False,56

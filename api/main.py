@@ -27,10 +27,10 @@ EVALUATION_PATH = os.path.join(BASE_DIR, "results", "evaluation.json")
 _state = {}
 
 
-def _best_model_kind():
+def _served_model_kind():
     if os.path.exists(EVALUATION_PATH):
         with open(EVALUATION_PATH) as handle:
-            return json.load(handle)["best_model"]
+            return json.load(handle)["served_model"]
     return "linear"
 
 
@@ -38,7 +38,7 @@ def _best_model_kind():
 async def lifespan(app: FastAPI):
     dataset = build_dataset()
     _state["drivers"] = sorted(dataset["Driver"].unique())
-    _state["model"] = load_model() or train_final(dataset, _best_model_kind())
+    _state["model"] = load_model() or train_final(dataset, _served_model_kind())
     _state["effects"] = {}
     yield
     _state.clear()
@@ -81,7 +81,10 @@ class StintRequest(BaseModel):
     compound: str
     stint_length: int
     start_lap: int
-    base_pace: Optional[float] = None
+    base_pace: Optional[float] = Field(
+        default=None, gt=0, lt=1000,
+        description="Lap time in seconds on the reference compound with no fuel and no "
+                    "wear. Defaults to the field average for the race.")
 
 
 def _effects(race):
@@ -116,6 +119,7 @@ async def predict_lap_time(request: PredictRequest):
     )
     return {
         "predicted_lap_time": round(seconds, 3),
+        "driver_known": request.driver.upper() in _state["drivers"],
         "relative_to_reference_pct": round(seconds / request.reference_lap_time * 100, 3),
         "inputs": request.model_dump(),
     }
@@ -133,6 +137,8 @@ async def race_analysis(race: str):
             for compound, info in effects["degradation"].items()
         },
         "not_fitted": effects["not_fitted"],
+        "drivers_not_fitted": effects["drivers_not_fitted"],
+        "warnings": effects["warnings"],
         "driver_pace": {d: round(p, 3) for d, p in effects["driver_pace"].items()},
         "residual_std": round(effects["residual_std"], 3),
     }
@@ -154,4 +160,5 @@ async def predict_stint(request: StintRequest):
         "total_time": round(stint["total_time"], 2),
         "mean_lap_time": round(stint["total_time"] / stint["stint_length"], 3),
         "lap_times": [round(t, 3) for t in stint["lap_times"]],
+        "warnings": stint["warnings"],
     }

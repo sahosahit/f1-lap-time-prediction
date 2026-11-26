@@ -10,7 +10,10 @@ does what was learned carry over to a race the model has not seen?
 Two baselines give the scores meaning:
 - race_median:    every lap equals the race's median lap (predicts 100%);
 - driver_average: every lap equals that driver's usual pace relative to
-                  the field, learned from the other races.
+                  the field, learned from the other races;
+- driver_plus_fuel: the same, plus a straight-line fuel effect learned from
+                  the other races. It knows nothing about tyres, so the gap
+                  between it and a model is what tyre information adds.
 """
 
 import os
@@ -27,9 +30,9 @@ from sklearn.preprocessing import OneHotEncoder
 from feature_engineering import CATEGORICAL, NUMERIC, TARGET, add_model_inputs
 
 MODELS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models")
-MODEL_PATH = os.path.join(MODELS_DIR, "lap_time_model.joblib")
+MODEL_PATH = os.path.join(MODELS_DIR, "lap_time_model_v2.joblib")
 MODEL_KINDS = ("linear", "random_forest", "gradient_boosting")
-BASELINES = ("race_median", "driver_average")
+BASELINES = ("race_median", "driver_average", "driver_plus_fuel")
 
 
 def make_model(kind):
@@ -83,6 +86,13 @@ def baseline_leave_one_race_out(dataset, baseline):
         train, test = dataset[dataset["Race"] != race], dataset[dataset["Race"] == race]
         if baseline == "race_median":
             predicted = np.full(len(test), 100.0)
+        elif baseline == "driver_plus_fuel":
+            encode = ColumnTransformer([
+                ("driver", OneHotEncoder(handle_unknown="ignore"), ["Driver"]),
+                ("fuel", "passthrough", ["FuelFraction"]),
+            ])
+            fitted = Pipeline([("encode", encode), ("estimator", Ridge(alpha=1.0))])
+            predicted = fitted.fit(train, train[TARGET]).predict(test)
         else:
             usual_pace = train.groupby("Driver")[TARGET].mean()
             predicted = test["Driver"].map(usual_pace).fillna(100.0).to_numpy()
@@ -131,5 +141,15 @@ def save_model(model, path=MODEL_PATH):
 
 
 def load_model(path=MODEL_PATH):
-    """The saved model, or None if it has not been trained yet."""
-    return joblib.load(path) if os.path.exists(path) else None
+    """
+    The saved model, or None if there is none or it cannot be used (for
+    example a file left over from an older version with different inputs).
+    """
+    if not os.path.exists(path):
+        return None
+    try:
+        model = joblib.load(path)
+        predict_seconds(model, "VER", "HARD", 10, 20, 50, 90.0)
+    except Exception:
+        return None
+    return model

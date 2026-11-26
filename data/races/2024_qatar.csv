@@ -3,7 +3,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,ALB,2,146.296,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,ALB,3,137.47,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,ALB,4,129.827,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,ALB,5,91.146,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,ALB,5,91.146,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,ALB,6,89.921,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,ALB,7,88.528,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,ALB,8,88.499,1,MEDIUM,7,True,False,False,False,57
@@ -41,7 +41,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,ALB,40,114.034,4,SOFT,4,False,False,False,True,57
 2024_qatar,ALB,41,134.065,4,SOFT,5,False,False,False,True,57
 2024_qatar,ALB,42,136.483,4,SOFT,6,False,False,False,True,57
-2024_qatar,ALB,43,87.968,4,SOFT,7,False,False,False,False,57
+2024_qatar,ALB,43,87.968,4,SOFT,7,False,False,False,True,57
 2024_qatar,ALB,44,86.524,4,SOFT,8,False,False,False,False,57
 2024_qatar,ALB,45,85.844,4,SOFT,9,False,False,False,False,57
 2024_qatar,ALB,46,85.701,4,SOFT,10,False,False,False,False,57
@@ -59,7 +59,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,ALO,2,142.483,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,ALO,3,138.215,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,ALO,4,142.341,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,ALO,5,92.386,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,ALO,5,92.386,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,ALO,6,89.044,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,ALO,7,88.057,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,ALO,8,88.028,1,MEDIUM,7,True,False,False,False,57
@@ -97,7 +97,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,ALO,40,111.269,4,MEDIUM,9,False,False,False,True,57
 2024_qatar,ALO,41,132.579,4,MEDIUM,10,False,False,False,True,57
 2024_qatar,ALO,42,140.832,4,MEDIUM,11,False,False,False,True,57
-2024_qatar,ALO,43,87.771,4,MEDIUM,12,False,False,False,False,57
+2024_qatar,ALO,43,87.771,4,MEDIUM,12,False,False,False,True,57
 2024_qatar,ALO,44,85.477,4,MEDIUM,13,False,False,False,False,57
 2024_qatar,ALO,45,85.0,4,MEDIUM,14,False,False,False,False,57
 2024_qatar,ALO,46,84.44,4,MEDIUM,15,False,False,False,False,57
@@ -116,7 +116,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,BOT,2,144.412,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,BOT,3,138.818,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,BOT,4,132.447,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,BOT,5,92.024,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,BOT,5,92.024,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,BOT,6,89.4,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,BOT,7,88.25,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,BOT,8,88.501,1,MEDIUM,7,True,False,False,False,57
@@ -154,7 +154,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,BOT,40,117.286,4,MEDIUM,12,False,False,False,True,57
 2024_qatar,BOT,41,132.721,4,MEDIUM,13,False,False,False,True,57
 2024_qatar,BOT,42,133.244,4,MEDIUM,14,False,False,False,True,57
-2024_qatar,BOT,43,88.386,4,MEDIUM,15,False,False,False,False,57
+2024_qatar,BOT,43,88.386,4,MEDIUM,15,False,False,False,True,57
 2024_qatar,BOT,44,86.779,4,MEDIUM,16,False,False,False,False,57
 2024_qatar,BOT,45,86.296,4,MEDIUM,17,False,False,False,False,57
 2024_qatar,BOT,46,86.979,4,MEDIUM,18,False,False,False,False,57
@@ -173,7 +173,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,GAS,2,143.807,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,GAS,3,139.509,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,GAS,4,133.088,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,GAS,5,91.425,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,GAS,5,91.425,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,GAS,6,88.418,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,GAS,7,87.738,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,GAS,8,87.881,1,MEDIUM,7,True,False,False,False,57
@@ -211,7 +211,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,GAS,40,108.476,4,HARD,4,False,False,False,True,57
 2024_qatar,GAS,41,133.101,4,HARD,5,False,False,False,True,57
 2024_qatar,GAS,42,143.945,4,HARD,6,False,False,False,True,57
-2024_qatar,GAS,43,87.285,4,HARD,7,False,False,False,False,57
+2024_qatar,GAS,43,87.285,4,HARD,7,False,False,False,True,57
 2024_qatar,GAS,44,85.421,4,HARD,8,False,False,False,False,57
 2024_qatar,GAS,45,84.508,4,HARD,9,False,False,False,False,57
 2024_qatar,GAS,46,84.238,4,HARD,10,False,False,False,False,57
@@ -230,7 +230,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,HAM,2,144.03,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,HAM,3,138.93,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,HAM,4,139.017,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,HAM,5,89.473,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,HAM,5,89.473,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,HAM,6,88.084,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,HAM,7,87.872,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,HAM,8,87.043,1,MEDIUM,7,True,False,False,False,57
@@ -268,7 +268,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,HAM,40,114.351,4,HARD,5,False,False,False,True,57
 2024_qatar,HAM,41,134.586,4,HARD,6,False,False,False,True,57
 2024_qatar,HAM,42,135.024,4,HARD,7,False,False,False,True,57
-2024_qatar,HAM,43,89.654,4,HARD,8,False,False,False,False,57
+2024_qatar,HAM,43,89.654,4,HARD,8,False,False,False,True,57
 2024_qatar,HAM,44,87.093,4,HARD,9,False,False,False,False,57
 2024_qatar,HAM,45,85.28,4,HARD,10,False,False,False,False,57
 2024_qatar,HAM,46,84.726,4,HARD,11,False,False,False,False,57
@@ -287,7 +287,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,HUL,2,127.072,2,HARD,0,True,False,True,True,57
 2024_qatar,HUL,3,131.639,2,HARD,1,True,False,False,True,57
 2024_qatar,HUL,4,126.08,2,HARD,2,True,False,False,True,57
-2024_qatar,HUL,5,91.557,2,HARD,3,True,False,False,False,57
+2024_qatar,HUL,5,91.557,2,HARD,3,True,False,False,True,57
 2024_qatar,HUL,6,90.682,2,HARD,4,True,False,False,False,57
 2024_qatar,HUL,7,88.652,2,HARD,5,True,False,False,False,57
 2024_qatar,HUL,8,88.418,2,HARD,6,True,False,False,False,57
@@ -326,7 +326,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,LAW,2,145.297,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,LAW,3,138.396,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,LAW,4,130.85,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,LAW,5,97.35,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,LAW,5,97.35,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,LAW,6,89.548,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,LAW,7,88.165,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,LAW,8,88.159,1,MEDIUM,7,True,False,False,False,57
@@ -364,7 +364,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,LAW,40,120.647,4,HARD,4,False,True,False,True,57
 2024_qatar,LAW,41,135.917,5,SOFT,0,True,False,True,True,57
 2024_qatar,LAW,42,128.759,5,SOFT,1,True,False,False,True,57
-2024_qatar,LAW,43,89.07,5,SOFT,2,True,False,False,False,57
+2024_qatar,LAW,43,89.07,5,SOFT,2,True,False,False,True,57
 2024_qatar,LAW,44,87.6,5,SOFT,3,True,False,False,False,57
 2024_qatar,LAW,45,86.207,5,SOFT,4,True,False,False,False,57
 2024_qatar,LAW,46,86.076,5,SOFT,5,True,False,False,False,57
@@ -383,7 +383,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,LEC,2,142.075,1,MEDIUM,2,False,False,False,True,57
 2024_qatar,LEC,3,137.488,1,MEDIUM,3,False,False,False,True,57
 2024_qatar,LEC,4,147.558,1,MEDIUM,4,False,False,False,True,57
-2024_qatar,LEC,5,89.202,1,MEDIUM,5,False,False,False,False,57
+2024_qatar,LEC,5,89.202,1,MEDIUM,5,False,False,False,True,57
 2024_qatar,LEC,6,87.556,1,MEDIUM,6,False,False,False,False,57
 2024_qatar,LEC,7,86.887,1,MEDIUM,7,False,False,False,False,57
 2024_qatar,LEC,8,87.19,1,MEDIUM,8,False,False,False,False,57
@@ -421,7 +421,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,LEC,40,101.971,4,HARD,4,False,False,False,True,57
 2024_qatar,LEC,41,135.614,4,HARD,5,False,False,False,True,57
 2024_qatar,LEC,42,147.125,4,HARD,6,False,False,False,True,57
-2024_qatar,LEC,43,85.854,4,HARD,7,False,False,False,False,57
+2024_qatar,LEC,43,85.854,4,HARD,7,False,False,False,True,57
 2024_qatar,LEC,44,84.012,4,HARD,8,False,False,False,False,57
 2024_qatar,LEC,45,83.937,4,HARD,9,False,False,False,False,57
 2024_qatar,LEC,46,83.665,4,HARD,10,False,False,False,False,57
@@ -440,7 +440,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,MAG,2,143.343,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,MAG,3,138.697,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,MAG,4,134.923,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,MAG,5,90.89,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,MAG,5,90.89,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,MAG,6,88.533,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,MAG,7,88.075,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,MAG,8,87.707,1,MEDIUM,7,True,False,False,False,57
@@ -478,7 +478,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,MAG,40,113.041,4,HARD,12,False,False,False,True,57
 2024_qatar,MAG,41,133.54,4,HARD,13,False,False,False,True,57
 2024_qatar,MAG,42,138.376,4,HARD,14,False,False,False,True,57
-2024_qatar,MAG,43,89.014,4,HARD,15,False,False,False,False,57
+2024_qatar,MAG,43,89.014,4,HARD,15,False,False,False,True,57
 2024_qatar,MAG,44,86.26,4,HARD,16,False,False,False,False,57
 2024_qatar,MAG,45,85.784,4,HARD,17,False,False,False,False,57
 2024_qatar,MAG,46,85.823,4,HARD,18,False,False,False,False,57
@@ -497,7 +497,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,NOR,2,141.28,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,NOR,3,137.622,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,NOR,4,151.036,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,NOR,5,87.175,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,NOR,5,87.175,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,NOR,6,86.683,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,NOR,7,86.5,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,NOR,8,86.668,1,MEDIUM,7,True,False,False,False,57
@@ -535,7 +535,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,NOR,40,99.808,4,HARD,4,False,False,False,True,57
 2024_qatar,NOR,41,137.19,4,HARD,5,False,False,False,True,57
 2024_qatar,NOR,42,148.012,4,HARD,6,False,False,False,True,57
-2024_qatar,NOR,43,84.627,4,HARD,7,False,False,False,False,57
+2024_qatar,NOR,43,84.627,4,HARD,7,False,False,False,True,57
 2024_qatar,NOR,44,83.473,4,HARD,8,False,False,False,False,57
 2024_qatar,NOR,45,87.666,4,HARD,9,False,True,False,False,57
 2024_qatar,NOR,46,112.677,5,HARD,10,False,False,True,False,57
@@ -554,7 +554,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,PER,2,143.708,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,PER,3,138.267,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,PER,4,143.573,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,PER,5,89.55,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,PER,5,89.55,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,PER,6,87.827,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,PER,7,87.28,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,PER,8,87.403,1,MEDIUM,7,True,False,False,False,57
@@ -592,7 +592,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,PIA,2,142.913,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,PIA,3,137.707,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,PIA,4,145.626,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,PIA,5,87.603,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,PIA,5,87.603,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,PIA,6,87.02,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,PIA,7,86.851,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,PIA,8,86.322,1,MEDIUM,7,True,False,False,False,57
@@ -630,7 +630,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,PIA,40,103.378,4,HARD,5,False,False,False,True,57
 2024_qatar,PIA,41,135.81,4,HARD,6,False,False,False,True,57
 2024_qatar,PIA,42,145.878,4,HARD,7,False,False,False,True,57
-2024_qatar,PIA,43,86.116,4,HARD,8,False,False,False,False,57
+2024_qatar,PIA,43,86.116,4,HARD,8,False,False,False,True,57
 2024_qatar,PIA,44,84.301,4,HARD,9,False,False,False,False,57
 2024_qatar,PIA,45,83.98,4,HARD,10,False,False,False,False,57
 2024_qatar,PIA,46,83.909,4,HARD,11,False,False,False,False,57
@@ -649,7 +649,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,RUS,2,141.375,1,MEDIUM,2,False,False,False,True,57
 2024_qatar,RUS,3,137.726,1,MEDIUM,3,False,False,False,True,57
 2024_qatar,RUS,4,149.191,1,MEDIUM,4,False,False,False,True,57
-2024_qatar,RUS,5,87.948,1,MEDIUM,5,False,False,False,False,57
+2024_qatar,RUS,5,87.948,1,MEDIUM,5,False,False,False,True,57
 2024_qatar,RUS,6,86.797,1,MEDIUM,6,False,False,False,False,57
 2024_qatar,RUS,7,86.561,1,MEDIUM,7,False,False,False,False,57
 2024_qatar,RUS,8,86.433,1,MEDIUM,8,False,False,False,False,57
@@ -687,7 +687,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,RUS,40,106.275,5,HARD,4,False,False,False,True,57
 2024_qatar,RUS,41,134.121,5,HARD,5,False,False,False,True,57
 2024_qatar,RUS,42,144.716,5,HARD,6,False,False,False,True,57
-2024_qatar,RUS,43,86.371,5,HARD,7,False,False,False,False,57
+2024_qatar,RUS,43,86.371,5,HARD,7,False,False,False,True,57
 2024_qatar,RUS,44,84.644,5,HARD,8,False,False,False,False,57
 2024_qatar,RUS,45,84.01,5,HARD,9,False,False,False,False,57
 2024_qatar,RUS,46,83.614,5,HARD,10,False,False,False,False,57
@@ -706,7 +706,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,SAI,2,143.307,1,MEDIUM,2,False,False,False,True,57
 2024_qatar,SAI,3,137.994,1,MEDIUM,3,False,False,False,True,57
 2024_qatar,SAI,4,144.487,1,MEDIUM,4,False,False,False,True,57
-2024_qatar,SAI,5,89.355,1,MEDIUM,5,False,False,False,False,57
+2024_qatar,SAI,5,89.355,1,MEDIUM,5,False,False,False,True,57
 2024_qatar,SAI,6,87.634,1,MEDIUM,6,False,False,False,False,57
 2024_qatar,SAI,7,87.189,1,MEDIUM,7,False,False,False,False,57
 2024_qatar,SAI,8,87.142,1,MEDIUM,8,False,False,False,False,57
@@ -744,7 +744,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,SAI,40,110.298,4,HARD,5,False,False,False,True,57
 2024_qatar,SAI,41,133.053,4,HARD,6,False,False,False,True,57
 2024_qatar,SAI,42,142.05,4,HARD,7,False,False,False,True,57
-2024_qatar,SAI,43,87.686,4,HARD,8,False,False,False,False,57
+2024_qatar,SAI,43,87.686,4,HARD,8,False,False,False,True,57
 2024_qatar,SAI,44,85.236,4,HARD,9,False,False,False,False,57
 2024_qatar,SAI,45,84.607,4,HARD,10,False,False,False,False,57
 2024_qatar,SAI,46,84.17,4,HARD,11,False,False,False,False,57
@@ -763,7 +763,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,STR,2,147.099,2,HARD,0,True,False,True,True,57
 2024_qatar,STR,3,136.92,2,HARD,1,True,False,False,True,57
 2024_qatar,STR,4,129.1,2,HARD,2,True,False,False,True,57
-2024_qatar,STR,5,93.523,2,HARD,3,True,False,False,False,57
+2024_qatar,STR,5,93.523,2,HARD,3,True,False,False,True,57
 2024_qatar,STR,6,90.935,2,HARD,4,True,False,False,False,57
 2024_qatar,STR,7,96.33,2,HARD,5,True,True,False,False,57
 2024_qatar,STR,8,140.862,3,HARD,0,True,False,True,False,57
@@ -771,7 +771,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,TSU,2,143.351,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,TSU,3,138.497,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,TSU,4,136.969,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,TSU,5,90.04,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,TSU,5,90.04,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,TSU,6,88.679,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,TSU,7,88.217,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,TSU,8,87.737,1,MEDIUM,7,True,False,False,False,57
@@ -809,7 +809,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,TSU,40,119.241,4,HARD,4,False,True,False,True,57
 2024_qatar,TSU,41,134.978,5,SOFT,0,True,False,True,True,57
 2024_qatar,TSU,42,131.701,5,SOFT,1,True,False,False,True,57
-2024_qatar,TSU,43,88.689,5,SOFT,2,True,False,False,False,57
+2024_qatar,TSU,43,88.689,5,SOFT,2,True,False,False,True,57
 2024_qatar,TSU,44,87.188,5,SOFT,3,True,False,False,False,57
 2024_qatar,TSU,45,86.798,5,SOFT,4,True,False,False,False,57
 2024_qatar,TSU,46,86.367,5,SOFT,5,True,False,False,False,57
@@ -828,7 +828,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,VER,2,141.257,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,VER,3,137.39,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,VER,4,153.079,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,VER,5,86.724,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,VER,5,86.724,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,VER,6,86.502,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,VER,7,86.376,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,VER,8,86.28,1,MEDIUM,7,True,False,False,False,57
@@ -866,7 +866,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,VER,40,99.436,4,HARD,4,False,False,False,True,57
 2024_qatar,VER,41,136.076,4,HARD,5,False,False,False,True,57
 2024_qatar,VER,42,149.083,4,HARD,6,False,False,False,True,57
-2024_qatar,VER,43,84.509,4,HARD,7,False,False,False,False,57
+2024_qatar,VER,43,84.509,4,HARD,7,False,False,False,True,57
 2024_qatar,VER,44,83.533,4,HARD,8,False,False,False,False,57
 2024_qatar,VER,45,83.393,4,HARD,9,False,False,False,False,57
 2024_qatar,VER,46,83.37,4,HARD,10,False,False,False,False,57
@@ -885,7 +885,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,ZHO,2,145.861,1,MEDIUM,1,True,False,False,True,57
 2024_qatar,ZHO,3,138.331,1,MEDIUM,2,True,False,False,True,57
 2024_qatar,ZHO,4,130.295,1,MEDIUM,3,True,False,False,True,57
-2024_qatar,ZHO,5,90.517,1,MEDIUM,4,True,False,False,False,57
+2024_qatar,ZHO,5,90.517,1,MEDIUM,4,True,False,False,True,57
 2024_qatar,ZHO,6,89.258,1,MEDIUM,5,True,False,False,False,57
 2024_qatar,ZHO,7,88.056,1,MEDIUM,6,True,False,False,False,57
 2024_qatar,ZHO,8,88.369,1,MEDIUM,7,True,False,False,False,57
@@ -923,7 +923,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_qatar,ZHO,40,112.918,4,HARD,4,False,False,False,True,57
 2024_qatar,ZHO,41,132.403,4,HARD,5,False,False,False,True,57
 2024_qatar,ZHO,42,139.983,4,HARD,6,False,False,False,True,57
-2024_qatar,ZHO,43,88.011,4,HARD,7,False,False,False,False,57
+2024_qatar,ZHO,43,88.011,4,HARD,7,False,False,False,True,57
 2024_qatar,ZHO,44,86.299,4,HARD,8,False,False,False,False,57
 2024_qatar,ZHO,45,85.141,4,HARD,9,False,False,False,False,57
 2024_qatar,ZHO,46,85.067,4,HARD,10,False,False,False,False,57

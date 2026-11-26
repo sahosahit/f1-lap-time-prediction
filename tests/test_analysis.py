@@ -58,3 +58,33 @@ def test_stint_on_an_unfitted_compound_is_refused():
 def test_stint_must_fit_inside_the_race(effects):
     with pytest.raises(ValueError):
         expected_stint_time(effects, "HARD", stint_length=30, start_lap=40, base_pace=90.0)
+
+
+def test_driver_with_only_a_few_laps_is_left_out_of_the_fit():
+    race = make_race(soft_drivers=(0, 1, 2, 3))
+    race = race[~((race["Driver"] == "D05") & (race["LapNumber"] > 6))]
+    effects = fit_race_effects(race)
+    assert "D05" not in effects["driver_pace"]
+    assert effects["drivers_not_fitted"] == {"D05": 5}
+
+
+def test_non_physical_estimates_are_flagged():
+    race = make_race(soft_drivers=(0, 1, 2, 3))
+    hard = race["Compound"] == "HARD"
+    race.loc[hard, "LapTimeSec"] -= 0.2 * race.loc[hard, "TyreLife"]   # tyres that get faster
+    effects = fit_race_effects(race)
+    assert effects["degradation"]["HARD"]["rate_per_lap"] < 0
+    assert any("HARD" in warning for warning in effects["warnings"])
+
+
+def test_clean_fit_has_no_warnings(effects):
+    assert effects["warnings"] == []
+
+
+def test_a_field_that_cannot_separate_fuel_from_tyres_is_refused():
+    # Everyone on one set of tyres all race: tyre age and laps remaining move together.
+    race = make_race()
+    race = race[race["Stint"] == 1].copy()
+    race["TyreLife"] = race["LapNumber"] - 1
+    with pytest.raises(ValueError, match="separate"):
+        fit_race_effects(race)

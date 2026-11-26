@@ -26,8 +26,9 @@ NAMES = {
     "linear": "Linear (ridge)",
     "random_forest": "Random forest",
     "gradient_boosting": "Gradient boosting",
+    "driver_plus_fuel": "Baseline: driver's usual pace plus a fuel term",
     "driver_average": "Baseline: each driver at their usual pace",
-    "race_median": "Baseline: Every lap equals the race median",
+    "race_median": "Baseline: every lap equals the race median",
 }
 
 
@@ -38,7 +39,7 @@ def race_name(slug):
 
 def render_results_block(evaluation):
     """The README results section, built only from results/evaluation.json."""
-    best = evaluation["best_model"]
+    served = evaluation["served_model"]
     lines = [
         f"Leave-one-race-out over {evaluation['n_races']} races and "
         f"{evaluation['n_laps']:,} clean laps: each race is predicted by a model fitted on "
@@ -47,23 +48,26 @@ def render_results_block(evaluation):
         "| Method | Mean absolute error per lap | As a share of lap time |",
         "|---|---|---|",
     ]
-    for name in ("gradient_boosting", "linear", "random_forest", "driver_average", "race_median"):
+    for name in ("gradient_boosting", "linear", "random_forest", "driver_plus_fuel",
+                 "driver_average", "race_median"):
         score = evaluation["overall"][name]
-        label = NAMES[name] + (" **(best)**" if name == best else "")
+        label = NAMES[name] + (" **(served by the API)**" if name == served else "")
         lines.append(f"| {label} | {score['mae_sec']:.2f} s | {score['mae_pct']:.2f}% |")
     lines += [
         "",
-        f"Per race, mean absolute error in seconds per lap ({NAMES[best].lower()} against "
-        "the two baselines):",
+        f"Per race, mean absolute error in seconds per lap ({NAMES[served].lower()} against "
+        "the baselines):",
         "",
-        "| Race | Laps | Model | Driver's usual pace | Race median |",
-        "|---|---|---|---|---|",
+        "| Race | Laps | Model | Driver + fuel | Driver's usual pace | Race median |",
+        "|---|---|---|---|---|---|",
     ]
-    for slug, score in evaluation["per_race"][best].items():
-        usual = evaluation["per_race"]["driver_average"][slug]["mae_sec"]
-        median = evaluation["per_race"]["race_median"][slug]["mae_sec"]
+    for slug, score in evaluation["per_race"][served].items():
+        others = " | ".join(
+            f"{evaluation['per_race'][name][slug]['mae_sec']:.2f}"
+            for name in ("driver_plus_fuel", "driver_average", "race_median")
+        )
         lines.append(f"| {race_name(slug)} | {score['n_laps']} | {score['mae_sec']:.2f} "
-                     f"| {usual:.2f} | {median:.2f} |")
+                     f"| {others} |")
     return "\n".join(lines)
 
 
@@ -81,16 +85,32 @@ def write_results_block(block):
         handle.write(f"{text[:start]}\n{block}\n{text[end:]}")
 
 
+SIMPLEST_FIRST = ("linear", "gradient_boosting", "random_forest")
+AS_GOOD_AS_BEST_SEC = 0.01
+
+
+def choose_served_model(overall):
+    """
+    The simplest model whose error is within a hundredth of a second per lap
+    of the lowest. A gap that small is well inside the race-to-race spread,
+    so the extra complexity has not earned its place.
+    """
+    lowest = min(overall[kind]["mae_sec"] for kind in SIMPLEST_FIRST)
+    return next(kind for kind in SIMPLEST_FIRST
+                if overall[kind]["mae_sec"] <= lowest + AS_GOOD_AS_BEST_SEC)
+
+
 def evaluate(dataset):
     """Leave-one-race-out scores for every model and baseline."""
     per_race = {kind: leave_one_race_out(dataset, kind) for kind in MODEL_KINDS}
     per_race.update({b: baseline_leave_one_race_out(dataset, b) for b in BASELINES})
     overall = {name: summarise(scores) for name, scores in per_race.items()}
-    best = min(MODEL_KINDS, key=lambda kind: overall[kind]["mae_pct"])
+    best = min(MODEL_KINDS, key=lambda kind: overall[kind]["mae_sec"])
     return {
         "n_races": int(dataset["Race"].nunique()),
         "n_laps": int(len(dataset)),
         "best_model": best,
+        "served_model": choose_served_model(overall),
         "overall": overall,
         "per_race": per_race,
     }
@@ -109,8 +129,9 @@ def main():
     print(f"{evaluation['n_laps']} laps from {evaluation['n_races']} races, leave-one-race-out:")
     for name, score in evaluation["overall"].items():
         print(f"  {name:18} {score['mae_pct']:.3f}%  {score['mae_sec']:.3f} s per lap")
-    path = save_model(train_final(dataset, evaluation["best_model"]))
-    print(f"Best model: {evaluation['best_model']} -> {path}")
+    path = save_model(train_final(dataset, evaluation["served_model"]))
+    print(f"Lowest error: {evaluation['best_model']}; served: {evaluation['served_model']} "
+          f"-> {path}")
 
 
 if __name__ == "__main__":

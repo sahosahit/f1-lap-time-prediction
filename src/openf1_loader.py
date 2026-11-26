@@ -17,7 +17,7 @@ import time
 import pandas as pd
 import requests
 
-from races import RACES
+from races import ALL_RACES, RACES
 
 API_URL = "https://api.openf1.org/v1"
 DRY_COMPOUNDS = ("SOFT", "MEDIUM", "HARD")
@@ -42,37 +42,54 @@ def is_dry(stints):
 
 def neutralised_laps(race_control, total_laps):
     """
-    Race laps run under a safety car or virtual safety car.
+    Race laps run under a safety car, virtual safety car or red flag.
 
     Race control stamps each message with the lap the leader is about to
     complete, which runs one ahead of the lap being timed. So the slow laps
-    start one lap before the "DEPLOYED" message and end on the lap stamped
-    on "ENDING" / "IN THIS LAP". If the race is red flagged instead, the
-    period runs through the standing restart lap. A safety car that is
-    never called in covers the rest of the race.
+    start one lap before the "DEPLOYED" (or red flag) message. They end:
+    - on the lap stamped "ENDING" for a virtual safety car;
+    - one lap after "IN THIS LAP" for a full safety car, because the field
+      restarts bunched up and that lap is slow too;
+    - on the standing restart lap after a red flag.
+    A period that is never closed covers the rest of the race.
     """
+    def is_red_flag(message):
+        return message.get("category") == "Flag" and message.get("flag") == "RED"
+
     events = sorted(
         (m for m in race_control
-         if m.get("category") in ("SafetyCar", "SessionStatus")
+         if (m.get("category") in ("SafetyCar", "SessionStatus") or is_red_flag(m))
          and m.get("lap_number") is not None),
         key=lambda m: m["lap_number"],
     )
     laps = set()
-    deployed_on = None
+    open_from = None
     for message in events:
         text = (message.get("message") or "").upper()
-        if deployed_on is None:
-            if message["category"] == "SafetyCar" and "DEPLOYED" in text:
-                deployed_on = message["lap_number"]
-        elif message["category"] == "SafetyCar" and ("ENDING" in text or "IN THIS LAP" in text):
-            laps.update(range(deployed_on - 1, message["lap_number"] + 1))
-            deployed_on = None
-        elif message["category"] == "SessionStatus" and "STARTED" in text:
-            laps.update(range(deployed_on - 1, message["lap_number"] + 2))
-            deployed_on = None
-    if deployed_on is not None:
-        laps.update(range(deployed_on - 1, total_laps + 1))
-    return laps
+        category, lap = message["category"], message["lap_number"]
+        if open_from is None:
+            if (category == "SafetyCar" and "DEPLOYED" in text) or is_red_flag(message):
+                open_from = lap - 1
+        elif category == "SafetyCar" and "IN THIS LAP" in text:
+            laps.update(range(open_from, lap + 2))
+            open_from = None
+        elif category == "SafetyCar" and "ENDING" in text:
+            laps.update(range(open_from, lap + 1))
+            open_from = None
+        elif category == "SessionStatus" and "STARTED" in text:
+            laps.update(range(open_from, lap + 2))
+            open_from = None
+    if open_from is not None:
+        laps.update(range(open_from, total_laps + 1))
+    return {lap for lap in laps if lap >= 1}
+
+
+def first_full_field_lap(table):
+    """The first lap number that at least half of the drivers have a time for."""
+    if table.empty:
+        return 1
+    timed = table.groupby("LapNumber")["Driver"].nunique()
+    return int(timed[timed >= table["Driver"].nunique() / 2].index.min())
 
 
 def build_lap_table(slug, laps, stints, drivers, race_control):
@@ -115,6 +132,12 @@ def build_lap_table(slug, laps, stints, drivers, race_control):
         })
 
     table = pd.DataFrame(rows, columns=TIDY_COLUMNS)
+    # If the first lap that most of the field has a time for is not lap 1 (an
+    # aborted start left the early laps untimed), that lap is the standing
+    # restart: slow like lap 1.
+    restart_lap = first_full_field_lap(table)
+    if restart_lap > 1:
+        table.loc[table["LapNumber"] <= restart_lap, "Neutralised"] = True
     return table.sort_values(["Driver", "LapNumber"]).reset_index(drop=True)
 
 
@@ -139,7 +162,7 @@ def _get(endpoint, session_key):
 
 def fetch_race(slug):
     """Download one race from OpenF1 and return its tidy lap table."""
-    session_key = RACES[slug]
+    session_key = ALL_RACES[slug]
     stints = _get("stints", session_key)
     if not is_dry(stints):
         raise ValueError(f"{slug} is not a dry race")
@@ -167,7 +190,7 @@ def load_race(slug):
 
 
 def main():
-    for slug in RACES:
+    for slug in ALL_RACES:
         try:
             table = fetch_race(slug)
         except ValueError as error:

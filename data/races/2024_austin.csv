@@ -4,7 +4,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,ALB,3,136.698,1,MEDIUM,2,True,True,False,True,56
 2024_austin,ALB,4,156.139,2,MEDIUM,0,True,False,True,True,56
 2024_austin,ALB,5,141.937,2,MEDIUM,1,True,False,False,True,56
-2024_austin,ALB,6,104.652,2,MEDIUM,2,True,False,False,False,56
+2024_austin,ALB,6,104.652,2,MEDIUM,2,True,False,False,True,56
 2024_austin,ALB,7,102.627,2,MEDIUM,3,True,False,False,False,56
 2024_austin,ALB,8,102.144,2,MEDIUM,4,True,False,False,False,56
 2024_austin,ALB,9,102.001,2,MEDIUM,5,True,False,False,False,56
@@ -59,7 +59,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,ALO,3,133.66,1,MEDIUM,2,True,False,False,True,56
 2024_austin,ALO,4,149.599,1,MEDIUM,3,True,False,False,True,56
 2024_austin,ALO,5,154.538,1,MEDIUM,4,True,False,False,True,56
-2024_austin,ALO,6,103.042,1,MEDIUM,5,True,False,False,False,56
+2024_austin,ALO,6,103.042,1,MEDIUM,5,True,False,False,True,56
 2024_austin,ALO,7,102.409,1,MEDIUM,6,True,False,False,False,56
 2024_austin,ALO,8,101.508,1,MEDIUM,7,True,False,False,False,56
 2024_austin,ALO,9,101.975,1,MEDIUM,8,True,False,False,False,56
@@ -114,7 +114,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,BOT,3,138.546,1,MEDIUM,2,True,False,False,True,56
 2024_austin,BOT,4,150.342,1,MEDIUM,3,True,False,False,True,56
 2024_austin,BOT,5,146.661,1,MEDIUM,4,True,False,False,True,56
-2024_austin,BOT,6,103.6,1,MEDIUM,5,True,False,False,False,56
+2024_austin,BOT,6,103.6,1,MEDIUM,5,True,False,False,True,56
 2024_austin,BOT,7,102.18,1,MEDIUM,6,True,False,False,False,56
 2024_austin,BOT,8,101.483,1,MEDIUM,7,True,False,False,False,56
 2024_austin,BOT,9,102.031,1,MEDIUM,8,True,False,False,False,56
@@ -169,7 +169,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,COL,3,137.406,1,HARD,2,True,False,False,True,56
 2024_austin,COL,4,150.829,1,HARD,3,True,False,False,True,56
 2024_austin,COL,5,147.801,1,HARD,4,True,False,False,True,56
-2024_austin,COL,6,103.338,1,HARD,5,True,False,False,False,56
+2024_austin,COL,6,103.338,1,HARD,5,True,False,False,True,56
 2024_austin,COL,7,102.278,1,HARD,6,True,False,False,False,56
 2024_austin,COL,8,101.451,1,HARD,7,True,False,False,False,56
 2024_austin,COL,9,101.98,1,HARD,8,True,False,False,False,56
@@ -225,7 +225,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,GAS,3,128.872,1,MEDIUM,2,True,False,False,True,56
 2024_austin,GAS,4,149.84,1,MEDIUM,3,True,False,False,True,56
 2024_austin,GAS,5,160.207,1,MEDIUM,4,True,False,False,True,56
-2024_austin,GAS,6,102.096,1,MEDIUM,5,True,False,False,False,56
+2024_austin,GAS,6,102.096,1,MEDIUM,5,True,False,False,True,56
 2024_austin,GAS,7,101.487,1,MEDIUM,6,True,False,False,False,56
 2024_austin,GAS,8,101.037,1,MEDIUM,7,True,False,False,False,56
 2024_austin,GAS,9,100.712,1,MEDIUM,8,True,False,False,False,56
@@ -282,7 +282,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,HUL,3,134.259,1,MEDIUM,2,True,False,False,True,56
 2024_austin,HUL,4,149.504,1,MEDIUM,3,True,False,False,True,56
 2024_austin,HUL,5,153.617,1,MEDIUM,4,True,False,False,True,56
-2024_austin,HUL,6,103.09,1,MEDIUM,5,True,False,False,False,56
+2024_austin,HUL,6,103.09,1,MEDIUM,5,True,False,False,True,56
 2024_austin,HUL,7,101.428,1,MEDIUM,6,True,False,False,False,56
 2024_austin,HUL,8,101.285,1,MEDIUM,7,True,False,False,False,56
 2024_austin,HUL,9,101.651,1,MEDIUM,8,True,False,False,False,56
@@ -338,7 +338,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,LAW,3,135.152,1,HARD,2,True,False,False,True,56
 2024_austin,LAW,4,150.921,1,HARD,3,True,False,False,True,56
 2024_austin,LAW,5,150.275,1,HARD,4,True,False,False,True,56
-2024_austin,LAW,6,102.925,1,HARD,5,True,False,False,False,56
+2024_austin,LAW,6,102.925,1,HARD,5,True,False,False,True,56
 2024_austin,LAW,7,102.01,1,HARD,6,True,False,False,False,56
 2024_austin,LAW,8,101.557,1,HARD,7,True,False,False,False,56
 2024_austin,LAW,9,102.1,1,HARD,8,True,False,False,False,56
@@ -394,7 +394,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,LEC,3,122.873,1,MEDIUM,2,True,False,False,True,56
 2024_austin,LEC,4,151.204,1,MEDIUM,3,True,False,False,True,56
 2024_austin,LEC,5,168.785,1,MEDIUM,4,True,False,False,True,56
-2024_austin,LEC,6,98.951,1,MEDIUM,5,True,False,False,False,56
+2024_austin,LEC,6,98.951,1,MEDIUM,5,True,False,False,True,56
 2024_austin,LEC,7,99.57,1,MEDIUM,6,True,False,False,False,56
 2024_austin,LEC,8,99.307,1,MEDIUM,7,True,False,False,False,56
 2024_austin,LEC,9,99.257,1,MEDIUM,8,True,False,False,False,56
@@ -450,7 +450,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,MAG,3,128.559,1,MEDIUM,2,True,False,False,True,56
 2024_austin,MAG,4,150.492,1,MEDIUM,3,True,False,False,True,56
 2024_austin,MAG,5,159.607,1,MEDIUM,4,True,False,False,True,56
-2024_austin,MAG,6,102.311,1,MEDIUM,5,True,False,False,False,56
+2024_austin,MAG,6,102.311,1,MEDIUM,5,True,False,False,True,56
 2024_austin,MAG,7,101.74,1,MEDIUM,6,True,False,False,False,56
 2024_austin,MAG,8,100.836,1,MEDIUM,7,True,False,False,False,56
 2024_austin,MAG,9,100.634,1,MEDIUM,8,True,False,False,False,56
@@ -506,7 +506,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,NOR,3,124.41,1,MEDIUM,2,True,False,False,True,56
 2024_austin,NOR,4,150.67,1,MEDIUM,3,True,False,False,True,56
 2024_austin,NOR,5,165.769,1,MEDIUM,4,True,False,False,True,56
-2024_austin,NOR,6,100.663,1,MEDIUM,5,True,False,False,False,56
+2024_austin,NOR,6,100.663,1,MEDIUM,5,True,False,False,True,56
 2024_austin,NOR,7,100.469,1,MEDIUM,6,True,False,False,False,56
 2024_austin,NOR,8,100.411,1,MEDIUM,7,True,False,False,False,56
 2024_austin,NOR,9,100.196,1,MEDIUM,8,True,False,False,False,56
@@ -562,7 +562,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,OCO,3,138.048,1,MEDIUM,2,True,False,False,True,56
 2024_austin,OCO,4,150.669,1,MEDIUM,3,True,False,False,True,56
 2024_austin,OCO,5,143.011,1,MEDIUM,4,True,False,False,True,56
-2024_austin,OCO,6,104.34,1,MEDIUM,5,True,False,False,False,56
+2024_austin,OCO,6,104.34,1,MEDIUM,5,True,False,False,True,56
 2024_austin,OCO,7,101.923,1,MEDIUM,6,True,False,False,False,56
 2024_austin,OCO,8,101.675,1,MEDIUM,7,True,False,False,False,56
 2024_austin,OCO,9,101.837,1,MEDIUM,8,True,False,False,False,56
@@ -617,7 +617,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,PER,3,132.043,1,MEDIUM,2,True,False,False,True,56
 2024_austin,PER,4,150.697,1,MEDIUM,3,True,False,False,True,56
 2024_austin,PER,5,155.478,1,MEDIUM,4,True,False,False,True,56
-2024_austin,PER,6,102.576,1,MEDIUM,5,True,False,False,False,56
+2024_austin,PER,6,102.576,1,MEDIUM,5,True,False,False,True,56
 2024_austin,PER,7,101.703,1,MEDIUM,6,True,False,False,False,56
 2024_austin,PER,8,101.129,1,MEDIUM,7,True,False,False,False,56
 2024_austin,PER,9,101.402,1,MEDIUM,8,True,False,False,False,56
@@ -673,7 +673,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,PIA,3,126.009,1,MEDIUM,2,True,False,False,True,56
 2024_austin,PIA,4,149.123,1,MEDIUM,3,True,False,False,True,56
 2024_austin,PIA,5,164.254,1,MEDIUM,4,True,False,False,True,56
-2024_austin,PIA,6,101.753,1,MEDIUM,5,True,False,False,False,56
+2024_austin,PIA,6,101.753,1,MEDIUM,5,True,False,False,True,56
 2024_austin,PIA,7,101.086,1,MEDIUM,6,True,False,False,False,56
 2024_austin,PIA,8,100.678,1,MEDIUM,7,True,False,False,False,56
 2024_austin,PIA,9,100.285,1,MEDIUM,8,True,False,False,False,56
@@ -728,7 +728,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,RUS,3,140.454,1,HARD,2,True,False,False,True,56
 2024_austin,RUS,4,150.121,1,HARD,3,True,False,False,True,56
 2024_austin,RUS,5,143.987,1,HARD,4,True,False,False,True,56
-2024_austin,RUS,6,104.179,1,HARD,5,True,False,False,False,56
+2024_austin,RUS,6,104.179,1,HARD,5,True,False,False,True,56
 2024_austin,RUS,7,101.898,1,HARD,6,True,False,False,False,56
 2024_austin,RUS,8,101.524,1,HARD,7,True,False,False,False,56
 2024_austin,RUS,9,101.913,1,HARD,8,True,False,False,False,56
@@ -784,7 +784,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,SAI,3,123.612,1,MEDIUM,2,True,False,False,True,56
 2024_austin,SAI,4,151.665,1,MEDIUM,3,True,False,False,True,56
 2024_austin,SAI,5,166.655,1,MEDIUM,4,True,False,False,True,56
-2024_austin,SAI,6,100.002,1,MEDIUM,5,True,False,False,False,56
+2024_austin,SAI,6,100.002,1,MEDIUM,5,True,False,False,True,56
 2024_austin,SAI,7,99.684,1,MEDIUM,6,True,False,False,False,56
 2024_austin,SAI,8,100.944,1,MEDIUM,7,True,False,False,False,56
 2024_austin,SAI,9,100.022,1,MEDIUM,8,True,False,False,False,56
@@ -840,7 +840,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,STR,3,134.001,1,HARD,3,False,False,False,True,56
 2024_austin,STR,4,150.476,1,HARD,4,False,False,False,True,56
 2024_austin,STR,5,152.04,1,HARD,5,False,False,False,True,56
-2024_austin,STR,6,107.096,1,HARD,6,False,False,False,False,56
+2024_austin,STR,6,107.096,1,HARD,6,False,False,False,True,56
 2024_austin,STR,7,102.147,1,HARD,7,False,False,False,False,56
 2024_austin,STR,8,101.873,1,HARD,8,False,False,False,False,56
 2024_austin,STR,9,101.972,1,HARD,9,False,False,False,False,56
@@ -895,7 +895,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,TSU,3,131.6,1,MEDIUM,2,True,False,False,True,56
 2024_austin,TSU,4,150.263,1,MEDIUM,3,True,False,False,True,56
 2024_austin,TSU,5,156.517,1,MEDIUM,4,True,False,False,True,56
-2024_austin,TSU,6,102.559,1,MEDIUM,5,True,False,False,False,56
+2024_austin,TSU,6,102.559,1,MEDIUM,5,True,False,False,True,56
 2024_austin,TSU,7,101.731,1,MEDIUM,6,True,False,False,False,56
 2024_austin,TSU,8,101.101,1,MEDIUM,7,True,False,False,False,56
 2024_austin,TSU,9,100.953,1,MEDIUM,8,True,False,False,False,56
@@ -950,7 +950,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,VER,3,122.849,1,MEDIUM,2,True,False,False,True,56
 2024_austin,VER,4,151.496,1,MEDIUM,3,True,False,False,True,56
 2024_austin,VER,5,167.623,1,MEDIUM,4,True,False,False,True,56
-2024_austin,VER,6,99.779,1,MEDIUM,5,True,False,False,False,56
+2024_austin,VER,6,99.779,1,MEDIUM,5,True,False,False,True,56
 2024_austin,VER,7,99.731,1,MEDIUM,6,True,False,False,False,56
 2024_austin,VER,8,100.082,1,MEDIUM,7,True,False,False,False,56
 2024_austin,VER,9,100.032,1,MEDIUM,8,True,False,False,False,56
@@ -1006,7 +1006,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_austin,ZHO,3,136.979,1,MEDIUM,2,True,False,False,True,56
 2024_austin,ZHO,4,149.649,1,MEDIUM,3,True,False,False,True,56
 2024_austin,ZHO,5,149.529,1,MEDIUM,4,True,False,False,True,56
-2024_austin,ZHO,6,103.259,1,MEDIUM,5,True,False,False,False,56
+2024_austin,ZHO,6,103.259,1,MEDIUM,5,True,False,False,True,56
 2024_austin,ZHO,7,102.1,1,MEDIUM,6,True,False,False,False,56
 2024_austin,ZHO,8,101.474,1,MEDIUM,7,True,False,False,False,56
 2024_austin,ZHO,9,101.91,1,MEDIUM,8,True,False,False,False,56

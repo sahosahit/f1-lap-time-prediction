@@ -18,6 +18,7 @@ import numpy as np
 from feature_engineering import clean_laps
 
 MIN_COMPOUND_LAPS = 40
+MIN_DRIVER_LAPS = 10
 
 
 def fit_race_effects(laps):
@@ -28,6 +29,8 @@ def fit_race_effects(laps):
         fuel_effect_per_lap: seconds per lap of fuel still to burn
         degradation: {compound: {"rate_per_lap", "offset", "n_laps"}}
         not_fitted: {compound: n_laps} for compounds with too few clean laps
+        drivers_not_fitted: {driver: n_laps} for drivers with too few clean laps
+        warnings: plain-language notes on estimates that are not physical
         driver_pace: {driver: seconds vs the field average; negative is faster}
         total_laps, residual_std
     """
@@ -38,6 +41,11 @@ def fit_race_effects(laps):
         raise ValueError("No compound has enough clean laps to fit.")
     reference = compounds[0]
     clean = clean[clean["Compound"].isin(compounds)]
+    # A pace estimated from a handful of laps is noise, and it would drag the
+    # field average around.
+    laps_per_driver = clean["Driver"].value_counts()
+    too_few = {d: int(n) for d, n in laps_per_driver.items() if n < MIN_DRIVER_LAPS}
+    clean = clean[~clean["Driver"].isin(list(too_few))]
     drivers = sorted(clean["Driver"].unique())
 
     age = clean["TyreLife"].to_numpy(dtype=float)
@@ -49,6 +57,11 @@ def fit_race_effects(laps):
     matrix = np.column_stack(columns)
     target = clean["LapTimeSec"].to_numpy(dtype=float)
     coefficients, _, rank, _ = np.linalg.lstsq(matrix, target, rcond=None)
+    if rank < matrix.shape[1]:
+        raise ValueError(
+            "This race cannot separate fuel from tyre wear: tyre age and laps remaining "
+            "move together for the whole field (for example, nobody changed tyres)."
+        )
     residuals = target - matrix @ coefficients
 
     position = iter(coefficients)
@@ -59,6 +72,16 @@ def fit_race_effects(laps):
     rates = {c: float(next(position)) for c in compounds}
 
     field_average = float(np.mean(list(pace.values())))
+    warnings = []
+    if fuel_effect < 0:
+        warnings.append(
+            f"Fuel effect is negative ({fuel_effect:.3f} s per lap), which is not physical.")
+    for c in compounds:
+        if rates[c] < 0:
+            warnings.append(
+                f"{c} wear rate is negative ({rates[c]:.3f} s per lap): lap times fell as the "
+                "tyres aged, which usually means the track was getting faster. Do not read "
+                "it as tyre behaviour.")
     return {
         "race": str(laps["Race"].iloc[0]),
         "total_laps": int(laps["TotalLaps"].iloc[0]),
@@ -68,6 +91,8 @@ def fit_race_effects(laps):
             for c in compounds
         },
         "not_fitted": {c: int(n) for c, n in counts.items() if c not in compounds},
+        "drivers_not_fitted": too_few,
+        "warnings": warnings,
         "driver_pace": dict(sorted(
             ((d, p - field_average) for d, p in pace.items()), key=lambda item: item[1])),
         "field_average_pace": field_average,
@@ -98,4 +123,5 @@ def expected_stint_time(effects, compound, stint_length, start_lap, base_pace=No
         for age in range(stint_length)
     ]
     return {"compound": compound, "stint_length": stint_length, "start_lap": start_lap,
-            "lap_times": lap_times, "total_time": float(sum(lap_times))}
+            "lap_times": lap_times, "total_time": float(sum(lap_times)),
+            "warnings": effects["warnings"]}

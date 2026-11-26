@@ -84,3 +84,19 @@ def test_model_round_trips_through_disk(dataset, tmp_path):
     path = save_model(model, tmp_path / "m.joblib")
     assert load_model(path).predict(dataset.head(3)) == pytest.approx(model.predict(dataset.head(3)))
     assert load_model(tmp_path / "missing.joblib") is None
+
+
+def test_a_saved_model_from_an_older_version_is_ignored(tmp_path):
+    import joblib
+    from sklearn.linear_model import LinearRegression
+    import numpy as np
+    old = LinearRegression().fit(np.zeros((3, 5)), np.zeros(3))   # expects 5 bare numbers
+    path = tmp_path / "old.joblib"
+    joblib.dump(old, path)
+    assert load_model(path) is None
+
+
+def test_driver_plus_fuel_baseline_beats_driver_alone(dataset):
+    plain = summarise(baseline_leave_one_race_out(dataset, "driver_average"))
+    with_fuel = summarise(baseline_leave_one_race_out(dataset, "driver_plus_fuel"))
+    assert with_fuel["mae_pct"] < plain["mae_pct"]

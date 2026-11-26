@@ -5,7 +5,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,ALO,4,129.705,1,MEDIUM,4,False,False,False,True,71
 2024_mexico_city,ALO,5,129.13,1,MEDIUM,5,False,False,False,True,71
 2024_mexico_city,ALO,6,110.901,1,MEDIUM,6,False,False,False,True,71
-2024_mexico_city,ALO,7,82.722,1,MEDIUM,7,False,False,False,False,71
+2024_mexico_city,ALO,7,82.722,1,MEDIUM,7,False,False,False,True,71
 2024_mexico_city,ALO,8,83.312,1,MEDIUM,8,False,False,False,False,71
 2024_mexico_city,ALO,9,83.132,1,MEDIUM,9,False,False,False,False,71
 2024_mexico_city,ALO,10,83.173,1,MEDIUM,10,False,False,False,False,71
@@ -20,7 +20,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,BOT,4,129.902,1,HARD,4,False,False,False,True,71
 2024_mexico_city,BOT,5,130.636,1,HARD,5,False,False,False,True,71
 2024_mexico_city,BOT,6,105.588,1,HARD,6,False,False,False,True,71
-2024_mexico_city,BOT,7,83.635,1,HARD,7,False,False,False,False,71
+2024_mexico_city,BOT,7,83.635,1,HARD,7,False,False,False,True,71
 2024_mexico_city,BOT,8,83.131,1,HARD,8,False,False,False,False,71
 2024_mexico_city,BOT,9,82.964,1,HARD,9,False,False,False,False,71
 2024_mexico_city,BOT,10,83.483,1,HARD,10,False,False,False,False,71
@@ -90,7 +90,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,COL,4,129.527,1,HARD,3,True,False,False,True,71
 2024_mexico_city,COL,5,128.334,1,HARD,4,True,False,False,True,71
 2024_mexico_city,COL,6,109.707,1,HARD,5,True,False,False,True,71
-2024_mexico_city,COL,7,83.364,1,HARD,6,True,False,False,False,71
+2024_mexico_city,COL,7,83.364,1,HARD,6,True,False,False,True,71
 2024_mexico_city,COL,8,83.241,1,HARD,7,True,False,False,False,71
 2024_mexico_city,COL,9,83.032,1,HARD,8,True,False,False,False,71
 2024_mexico_city,COL,10,83.252,1,HARD,9,True,False,False,False,71
@@ -160,7 +160,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,GAS,4,130.874,1,MEDIUM,3,True,False,False,True,71
 2024_mexico_city,GAS,5,129.61,1,MEDIUM,4,True,False,False,True,71
 2024_mexico_city,GAS,6,115.05,1,MEDIUM,5,True,False,False,True,71
-2024_mexico_city,GAS,7,83.2,1,MEDIUM,6,True,False,False,False,71
+2024_mexico_city,GAS,7,83.2,1,MEDIUM,6,True,False,False,True,71
 2024_mexico_city,GAS,8,82.712,1,MEDIUM,7,True,False,False,False,71
 2024_mexico_city,GAS,9,82.301,1,MEDIUM,8,True,False,False,False,71
 2024_mexico_city,GAS,10,82.781,1,MEDIUM,9,True,False,False,False,71
@@ -230,7 +230,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,HAM,4,130.636,1,MEDIUM,3,True,False,False,True,71
 2024_mexico_city,HAM,5,130.151,1,MEDIUM,4,True,False,False,True,71
 2024_mexico_city,HAM,6,119.007,1,MEDIUM,5,True,False,False,True,71
-2024_mexico_city,HAM,7,82.609,1,MEDIUM,6,True,False,False,False,71
+2024_mexico_city,HAM,7,82.609,1,MEDIUM,6,True,False,False,True,71
 2024_mexico_city,HAM,8,81.998,1,MEDIUM,7,True,False,False,False,71
 2024_mexico_city,HAM,9,82.089,1,MEDIUM,8,True,False,False,False,71
 2024_mexico_city,HAM,10,83.444,1,MEDIUM,9,True,False,False,False,71
@@ -301,7 +301,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,HUL,4,130.097,1,MEDIUM,3,True,False,False,True,71
 2024_mexico_city,HUL,5,129.62,1,MEDIUM,4,True,False,False,True,71
 2024_mexico_city,HUL,6,116.068,1,MEDIUM,5,True,False,False,True,71
-2024_mexico_city,HUL,7,83.086,1,MEDIUM,6,True,False,False,False,71
+2024_mexico_city,HUL,7,83.086,1,MEDIUM,6,True,False,False,True,71
 2024_mexico_city,HUL,8,82.468,1,MEDIUM,7,True,False,False,False,71
 2024_mexico_city,HUL,9,82.413,1,MEDIUM,8,True,False,False,False,71
 2024_mexico_city,HUL,10,82.763,1,MEDIUM,9,True,False,False,False,71
@@ -371,7 +371,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,LAW,4,130.651,1,HARD,3,True,False,False,True,71
 2024_mexico_city,LAW,5,129.621,1,HARD,4,True,False,False,True,71
 2024_mexico_city,LAW,6,113.303,1,HARD,5,True,False,False,True,71
-2024_mexico_city,LAW,7,83.455,1,HARD,6,True,False,False,False,71
+2024_mexico_city,LAW,7,83.455,1,HARD,6,True,False,False,True,71
 2024_mexico_city,LAW,8,82.947,1,HARD,7,True,False,False,False,71
 2024_mexico_city,LAW,9,83.203,1,HARD,8,True,False,False,False,71
 2024_mexico_city,LAW,10,83.002,1,HARD,9,True,False,False,False,71
@@ -441,7 +441,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,LEC,4,130.481,1,MEDIUM,3,True,False,False,True,71
 2024_mexico_city,LEC,5,130.248,1,MEDIUM,4,True,False,False,True,71
 2024_mexico_city,LEC,6,119.324,1,MEDIUM,5,True,False,False,True,71
-2024_mexico_city,LEC,7,82.154,1,MEDIUM,6,True,False,False,False,71
+2024_mexico_city,LEC,7,82.154,1,MEDIUM,6,True,False,False,True,71
 2024_mexico_city,LEC,8,81.865,1,MEDIUM,7,True,False,False,False,71
 2024_mexico_city,LEC,9,82.101,1,MEDIUM,8,True,False,False,False,71
 2024_mexico_city,LEC,10,82.481,1,MEDIUM,9,True,False,False,False,71
@@ -512,7 +512,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,MAG,4,130.314,1,MEDIUM,3,True,False,False,True,71
 2024_mexico_city,MAG,5,130.254,1,MEDIUM,4,True,False,False,True,71
 2024_mexico_city,MAG,6,115.871,1,MEDIUM,5,True,False,False,True,71
-2024_mexico_city,MAG,7,83.031,1,MEDIUM,6,True,False,False,False,71
+2024_mexico_city,MAG,7,83.031,1,MEDIUM,6,True,False,False,True,71
 2024_mexico_city,MAG,8,82.259,1,MEDIUM,7,True,False,False,False,71
 2024_mexico_city,MAG,9,82.232,1,MEDIUM,8,True,False,False,False,71
 2024_mexico_city,MAG,10,82.768,1,MEDIUM,9,True,False,False,False,71
@@ -583,7 +583,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,NOR,4,131.1,1,MEDIUM,3,True,False,False,True,71
 2024_mexico_city,NOR,5,129.824,1,MEDIUM,4,True,False,False,True,71
 2024_mexico_city,NOR,6,121.27,1,MEDIUM,5,True,False,False,True,71
-2024_mexico_city,NOR,7,81.885,1,MEDIUM,6,True,False,False,False,71
+2024_mexico_city,NOR,7,81.885,1,MEDIUM,6,True,False,False,True,71
 2024_mexico_city,NOR,8,81.724,1,MEDIUM,7,True,False,False,False,71
 2024_mexico_city,NOR,9,82.413,1,MEDIUM,8,True,False,False,False,71
 2024_mexico_city,NOR,10,84.863,1,MEDIUM,9,True,False,False,False,71
@@ -653,7 +653,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,OCO,4,132.065,1,HARD,3,True,False,False,True,71
 2024_mexico_city,OCO,5,131.12,1,HARD,4,True,False,False,True,71
 2024_mexico_city,OCO,6,100.421,1,HARD,5,True,False,False,True,71
-2024_mexico_city,OCO,7,83.742,1,HARD,6,True,False,False,False,71
+2024_mexico_city,OCO,7,83.742,1,HARD,6,True,False,False,True,71
 2024_mexico_city,OCO,8,83.548,1,HARD,7,True,False,False,False,71
 2024_mexico_city,OCO,9,82.995,1,HARD,8,True,False,False,False,71
 2024_mexico_city,OCO,10,83.45,1,HARD,9,True,False,False,False,71
@@ -723,7 +723,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,PER,4,129.6,1,HARD,3,True,False,False,True,71
 2024_mexico_city,PER,5,129.209,1,HARD,4,True,False,False,True,71
 2024_mexico_city,PER,6,110.79,1,HARD,5,True,False,False,True,71
-2024_mexico_city,PER,7,83.003,1,HARD,6,True,False,False,False,71
+2024_mexico_city,PER,7,83.003,1,HARD,6,True,False,False,True,71
 2024_mexico_city,PER,8,83.206,1,HARD,7,True,False,False,False,71
 2024_mexico_city,PER,9,83.091,1,HARD,8,True,False,False,False,71
 2024_mexico_city,PER,10,83.138,1,HARD,9,True,False,False,False,71
@@ -793,7 +793,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,PIA,4,130.001,1,MEDIUM,3,True,False,False,True,71
 2024_mexico_city,PIA,5,130.449,1,MEDIUM,4,True,False,False,True,71
 2024_mexico_city,PIA,6,103.384,1,MEDIUM,5,True,False,False,True,71
-2024_mexico_city,PIA,7,83.677,1,MEDIUM,6,True,False,False,False,71
+2024_mexico_city,PIA,7,83.677,1,MEDIUM,6,True,False,False,True,71
 2024_mexico_city,PIA,8,83.399,1,MEDIUM,7,True,False,False,False,71
 2024_mexico_city,PIA,9,82.797,1,MEDIUM,8,True,False,False,False,71
 2024_mexico_city,PIA,10,82.793,1,MEDIUM,9,True,False,False,False,71
@@ -864,7 +864,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,RUS,4,129.897,1,MEDIUM,3,True,False,False,True,71
 2024_mexico_city,RUS,5,130.591,1,MEDIUM,4,True,False,False,True,71
 2024_mexico_city,RUS,6,117.001,1,MEDIUM,5,True,False,False,True,71
-2024_mexico_city,RUS,7,82.863,1,MEDIUM,6,True,False,False,False,71
+2024_mexico_city,RUS,7,82.863,1,MEDIUM,6,True,False,False,True,71
 2024_mexico_city,RUS,8,82.04,1,MEDIUM,7,True,False,False,False,71
 2024_mexico_city,RUS,9,82.182,1,MEDIUM,8,True,False,False,False,71
 2024_mexico_city,RUS,10,83.063,1,MEDIUM,9,True,False,False,False,71
@@ -935,7 +935,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,SAI,4,130.043,1,MEDIUM,3,True,False,False,True,71
 2024_mexico_city,SAI,5,129.925,1,MEDIUM,4,True,False,False,True,71
 2024_mexico_city,SAI,6,123.834,1,MEDIUM,5,True,False,False,True,71
-2024_mexico_city,SAI,7,81.83,1,MEDIUM,6,True,False,False,False,71
+2024_mexico_city,SAI,7,81.83,1,MEDIUM,6,True,False,False,True,71
 2024_mexico_city,SAI,8,81.284,1,MEDIUM,7,True,False,False,False,71
 2024_mexico_city,SAI,9,82.493,1,MEDIUM,8,True,False,False,False,71
 2024_mexico_city,SAI,10,82.438,1,MEDIUM,9,True,False,False,False,71
@@ -1006,7 +1006,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,STR,4,130.994,1,MEDIUM,4,False,False,False,True,71
 2024_mexico_city,STR,5,129.653,1,MEDIUM,5,False,False,False,True,71
 2024_mexico_city,STR,6,111.45,1,MEDIUM,6,False,False,False,True,71
-2024_mexico_city,STR,7,83.306,1,MEDIUM,7,False,False,False,False,71
+2024_mexico_city,STR,7,83.306,1,MEDIUM,7,False,False,False,True,71
 2024_mexico_city,STR,8,82.941,1,MEDIUM,8,False,False,False,False,71
 2024_mexico_city,STR,9,83.285,1,MEDIUM,9,False,False,False,False,71
 2024_mexico_city,STR,10,83.289,1,MEDIUM,10,False,False,False,False,71
@@ -1076,7 +1076,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,VER,4,129.792,1,MEDIUM,3,True,False,False,True,71
 2024_mexico_city,VER,5,130.292,1,MEDIUM,4,True,False,False,True,71
 2024_mexico_city,VER,6,124.357,1,MEDIUM,5,True,False,False,True,71
-2024_mexico_city,VER,7,81.442,1,MEDIUM,6,True,False,False,False,71
+2024_mexico_city,VER,7,81.442,1,MEDIUM,6,True,False,False,True,71
 2024_mexico_city,VER,8,81.475,1,MEDIUM,7,True,False,False,False,71
 2024_mexico_city,VER,9,84.027,1,MEDIUM,8,True,False,False,False,71
 2024_mexico_city,VER,10,84.675,1,MEDIUM,9,True,False,False,False,71
@@ -1147,7 +1147,7 @@ Race,Driver,LapNumber,LapTimeSec,Stint,Compound,TyreLife,FittedNew,IsPitInLap,Is
 2024_mexico_city,ZHO,4,130.13,1,HARD,4,False,False,False,True,71
 2024_mexico_city,ZHO,5,130.469,1,HARD,5,False,False,False,True,71
 2024_mexico_city,ZHO,6,104.212,1,HARD,6,False,False,False,True,71
-2024_mexico_city,ZHO,7,83.668,1,HARD,7,False,False,False,False,71
+2024_mexico_city,ZHO,7,83.668,1,HARD,7,False,False,False,True,71
 2024_mexico_city,ZHO,8,83.38,1,HARD,8,False,False,False,False,71
 2024_mexico_city,ZHO,9,82.904,1,HARD,9,False,False,False,False,71
 2024_mexico_city,ZHO,10,84.166,1,HARD,10,False,False,False,False,71
