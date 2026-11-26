@@ -1,131 +1,101 @@
 """
-Race performance analysis: driver pace decomposition, fuel burn, tyre degradation.
+What drove lap time in one race: fuel, tyre wear and driver pace.
+
+All three are estimated together, by least squares on clean laps:
+
+    lap time = driver pace + compound offset
+             + fuel effect x laps remaining
+             + wear rate (per compound) x tyre age
+
+They have to be estimated together. Fuel burns off and tyres wear at the
+same time, so fitting lap time against lap number alone (or correcting for
+fuel using tyre age) mixes the two up. Fitting the whole field at once
+separates them, because drivers pit on different laps.
 """
 
 import numpy as np
-import pandas as pd
-from sklearn.linear_model import LinearRegression
+
+from feature_engineering import clean_laps
+
+MIN_COMPOUND_LAPS = 40
 
 
-def estimate_fuel_burn(laps_df):
+def fit_race_effects(laps):
     """
-    Estimate fuel burn effect (sec/lap improvement as fuel decreases).
+    Fit one race's tidy lap table.
 
-    Args:
-        laps_df: DataFrame with LapTimeSec and LapNumber columns
-
-    Returns:
-        Dict with fuel_effect (sec/lap), r2, total_improvement
+    Returns a dict with:
+        fuel_effect_per_lap: seconds per lap of fuel still to burn
+        degradation: {compound: {"rate_per_lap", "offset", "n_laps"}}
+        not_fitted: {compound: n_laps} for compounds with too few clean laps
+        driver_pace: {driver: seconds vs the field average; negative is faster}
+        total_laps, residual_std
     """
-    df = laps_df.copy()
-    X = df[['LapNumber']].values
-    y = df['LapTimeSec'].values
+    clean = clean_laps(laps)
+    counts = clean["Compound"].value_counts()
+    compounds = [c for c in counts.index if counts[c] >= MIN_COMPOUND_LAPS]
+    if not compounds:
+        raise ValueError("No compound has enough clean laps to fit.")
+    reference = compounds[0]
+    clean = clean[clean["Compound"].isin(compounds)]
+    drivers = sorted(clean["Driver"].unique())
 
-    model = LinearRegression()
-    model.fit(X, y)
+    age = clean["TyreLife"].to_numpy(dtype=float)
+    compound = clean["Compound"].to_numpy()
+    columns = [(clean["Driver"].to_numpy() == d).astype(float) for d in drivers]
+    columns += [(compound == c).astype(float) for c in compounds if c != reference]
+    columns.append((clean["TotalLaps"] - clean["LapNumber"]).to_numpy(dtype=float))
+    columns += [np.where(compound == c, age, 0.0) for c in compounds]
+    matrix = np.column_stack(columns)
+    target = clean["LapTimeSec"].to_numpy(dtype=float)
+    coefficients, _, rank, _ = np.linalg.lstsq(matrix, target, rcond=None)
+    residuals = target - matrix @ coefficients
 
-    fuel_effect = -model.coef_[0]
-    total_laps = df['LapNumber'].max()
+    position = iter(coefficients)
+    pace = {driver: float(next(position)) for driver in drivers}
+    offsets = {reference: 0.0}
+    offsets.update({c: float(next(position)) for c in compounds if c != reference})
+    fuel_effect = float(next(position))
+    rates = {c: float(next(position)) for c in compounds}
 
+    field_average = float(np.mean(list(pace.values())))
     return {
-        'fuel_effect_per_lap': fuel_effect,
-        'r2': model.score(X, y),
-        'total_improvement': fuel_effect * total_laps,
+        "race": str(laps["Race"].iloc[0]),
+        "total_laps": int(laps["TotalLaps"].iloc[0]),
+        "fuel_effect_per_lap": fuel_effect,
+        "degradation": {
+            c: {"rate_per_lap": rates[c], "offset": offsets[c], "n_laps": int(counts[c])}
+            for c in compounds
+        },
+        "not_fitted": {c: int(n) for c, n in counts.items() if c not in compounds},
+        "driver_pace": dict(sorted(
+            ((d, p - field_average) for d, p in pace.items()), key=lambda item: item[1])),
+        "field_average_pace": field_average,
+        "residual_std": float(np.sqrt(residuals @ residuals / (len(target) - rank))),
     }
 
 
-def estimate_tyre_degradation(laps_df, fuel_effect=0.060):
+def expected_stint_time(effects, compound, stint_length, start_lap, base_pace=None):
     """
-    Estimate tyre degradation rate per compound after removing fuel effects.
+    Expected lap times for a stint on new tyres starting on `start_lap`.
 
     Args:
-        laps_df: DataFrame with LapTimeSec, TyreLife, Compound
-        fuel_effect: Fuel burn improvement per lap (to subtract)
-
-    Returns:
-        Dict with degradation rate per compound
+        base_pace: lap time on the reference compound with no fuel and no
+            wear; defaults to the field average for the race.
     """
-    df = laps_df.copy()
-    df['FuelCorrectedTime'] = df['LapTimeSec'] + fuel_effect * df['TyreLife']
-
-    results = {}
-    for compound in df['Compound'].unique():
-        compound_data = df[df['Compound'] == compound]
-        if len(compound_data) < 5:
-            continue
-
-        X = compound_data[['TyreLife']].values
-        y = compound_data['FuelCorrectedTime'].values
-
-        model = LinearRegression()
-        model.fit(X, y)
-
-        results[compound] = {
-            'degradation_rate': model.coef_[0],
-            'r2': model.score(X, y),
-            'n_laps': len(compound_data),
-        }
-
-    return results
-
-
-def decompose_driver_pace(laps_df, fuel_effect=0.060):
-    """
-    Extract driver pace by removing fuel and tyre effects.
-
-    Args:
-        laps_df: DataFrame with LapTimeSec, TyreLife, LapNumber, Driver
-        fuel_effect: Fuel burn improvement per lap
-
-    Returns:
-        DataFrame with driver pace rankings (delta vs field average)
-    """
-    df = laps_df.copy()
-    df['CorrectedTime'] = df['LapTimeSec'] + fuel_effect * (df['LapNumber'] - 1)
-
-    field_mean = df['CorrectedTime'].mean()
-    driver_pace = df.groupby('Driver')['CorrectedTime'].mean().reset_index()
-    driver_pace.columns = ['Driver', 'MeanCorrectedTime']
-    driver_pace['PaceDelta'] = driver_pace['MeanCorrectedTime'] - field_mean
-    driver_pace = driver_pace.sort_values('PaceDelta')
-
-    return driver_pace
-
-
-def simulate_stint(compound, stint_length, base_pace=99.0, fuel_effect=0.060, degradation_rates=None):
-    """
-    Monte Carlo stint simulation.
-
-    Args:
-        compound: Tyre compound name
-        stint_length: Number of laps
-        base_pace: Base lap time
-        fuel_effect: Fuel burn improvement per lap
-        degradation_rates: Dict with compound degradation rates
-
-    Returns:
-        Dict with mean, std, and lap times
-    """
-    if degradation_rates is None:
-        degradation_rates = {'SOFT': 0.066, 'MEDIUM': 0.029, 'HARD': 0.016}
-
-    deg_rate = degradation_rates.get(compound, 0.03)
-    n_simulations = 500
-    all_totals = []
-
-    for _ in range(n_simulations):
-        total = 0
-        for lap in range(stint_length):
-            lap_time = base_pace
-            lap_time += deg_rate * lap
-            lap_time -= fuel_effect * lap
-            lap_time += np.random.normal(0, 0.2)
-            total += lap_time
-        all_totals.append(total)
-
-    return {
-        'mean': np.mean(all_totals),
-        'std': np.std(all_totals),
-        'compound': compound,
-        'stint_length': stint_length,
-    }
+    compound = compound.upper()
+    if compound not in effects["degradation"]:
+        available = ", ".join(sorted(effects["degradation"]))
+        raise ValueError(f"No fit for {compound} in this race. Available: {available}.")
+    if stint_length < 1 or start_lap < 1 or start_lap + stint_length - 1 > effects["total_laps"]:
+        raise ValueError(
+            f"Stint must be at least 1 lap and end by lap {effects['total_laps']}.")
+    base_pace = effects["field_average_pace"] if base_pace is None else base_pace
+    tyre = effects["degradation"][compound]
+    lap_times = [
+        base_pace + tyre["offset"] + tyre["rate_per_lap"] * age
+        + effects["fuel_effect_per_lap"] * (effects["total_laps"] - (start_lap + age))
+        for age in range(stint_length)
+    ]
+    return {"compound": compound, "stint_length": stint_length, "start_lap": start_lap,
+            "lap_times": lap_times, "total_time": float(sum(lap_times))}

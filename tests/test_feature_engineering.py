@@ -1,79 +1,63 @@
-"""Tests for feature engineering pipeline."""
+"""Tests for turning race lap tables into a modelling dataset."""
+
+import os
+import sys
 
 import pytest
-import pandas as pd
-import numpy as np
-import sys
-import os
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from feature_engineering import encode_compounds, encode_drivers, create_features, COMPOUND_MAP
-
-
-class TestEncodeCompounds:
-    def test_correct_mapping(self):
-        series = pd.Series(['SOFT', 'MEDIUM', 'HARD', 'MEDIUM'])
-        result = encode_compounds(series)
-        assert result.tolist() == [0, 1, 2, 1]
-
-    def test_unknown_compound_defaults_to_1(self):
-        series = pd.Series(['UNKNOWN'])
-        result = encode_compounds(series)
-        assert result.tolist() == [1]
+from feature_engineering import CATEGORICAL, NUMERIC, TARGET, build_dataset, clean_laps, race_features
+from races import RACES
+from synthetic import make_race
 
 
-class TestEncodeDrivers:
-    def test_label_encoding(self):
-        series = pd.Series(['VER', 'HAM', 'NOR', 'VER'])
-        result = encode_drivers(series)
-        assert result[0] == result[3]  # VER same encoding
-        assert len(set(result)) == 3   # 3 unique drivers
-
-    def test_sorted_encoding(self):
-        series = pd.Series(['ZHO', 'ALB', 'VER'])
-        result = encode_drivers(series)
-        assert result.iloc[1] < result.iloc[2]  # ALB < VER alphabetically
+@pytest.fixture(scope="module")
+def race():
+    return make_race()
 
 
-class TestCreateFeatures:
-    def test_output_columns(self):
-        df = pd.DataFrame({
-            'Driver': ['VER'] * 5,
-            'Compound': ['MEDIUM'] * 5,
-            'TyreLife': [1.0, 2.0, 3.0, 4.0, 5.0],
-            'LapNumber': [1, 2, 3, 4, 5],
-            'LapTimeSec': [100.0, 99.5, 99.8, 100.1, 100.3],
-            'Stint': [1] * 5,
-        })
-        result = create_features(df, total_laps=56)
-        assert 'DriverEncoded' in result.columns
-        assert 'CompoundEncoded' in result.columns
-        assert 'TyreLifeSquared' in result.columns
-        assert 'FuelLoadProxy' in result.columns
+def test_pit_laps_lap_one_and_neutralised_laps_are_removed(race):
+    race = race.copy()
+    race.loc[race["LapNumber"] == 30, "Neutralised"] = True
+    clean = clean_laps(race)
+    assert not (clean["IsPitInLap"] | clean["IsPitOutLap"]).any()
+    assert not clean["LapNumber"].isin([1, 30]).any()
 
-    def test_fuel_proxy_decreases(self):
-        df = pd.DataFrame({
-            'Driver': ['VER'] * 5,
-            'Compound': ['MEDIUM'] * 5,
-            'TyreLife': [1.0, 2.0, 3.0, 4.0, 5.0],
-            'LapNumber': [1, 2, 3, 4, 5],
-            'LapTimeSec': [100.0, 99.5, 99.8, 100.1, 100.3],
-            'Stint': [1] * 5,
-        })
-        result = create_features(df, total_laps=56)
-        fuel = result['FuelLoadProxy'].values
-        assert all(fuel[i] > fuel[i+1] for i in range(len(fuel)-1))
 
-    def test_tyre_life_squared(self):
-        df = pd.DataFrame({
-            'Driver': ['VER'] * 3,
-            'Compound': ['HARD'] * 3,
-            'TyreLife': [2.0, 4.0, 6.0],
-            'LapNumber': [10, 11, 12],
-            'LapTimeSec': [100.0, 100.1, 100.2],
-            'Stint': [1] * 3,
-        })
-        result = create_features(df)
-        assert result['TyreLifeSquared'].iloc[0] == 4.0
-        assert result['TyreLifeSquared'].iloc[1] == 16.0
+def test_a_very_slow_lap_is_dropped(race):
+    race = race.copy()
+    slow = (race["Driver"] == "D00") & (race["LapNumber"] == 5)
+    race.loc[slow, "LapTimeSec"] *= 1.2
+    assert clean_laps(race)[lambda t: (t["Driver"] == "D00") & (t["LapNumber"] == 5)].empty
+
+
+def test_target_is_lap_time_as_a_percentage_of_the_race_median(race):
+    features = race_features(race)
+    assert features[TARGET].median() == pytest.approx(100.0, abs=0.01)
+    row = features.iloc[0]
+    assert row[TARGET] == pytest.approx(row["LapTimeSec"] / row["RefLapTime"] * 100)
+
+
+def test_fuel_fraction_runs_from_nearly_one_to_zero(race):
+    features = race_features(race)
+    assert features["FuelFraction"].max() == pytest.approx(48 / 50)
+    assert features["FuelFraction"].min() == 0.0
+
+
+def test_tyre_life_is_split_by_compound(race):
+    features = race_features(race)
+    hard = features[features["Compound"] == "HARD"].iloc[5]
+    assert hard["TyreLife_HARD"] == hard["TyreLife"]
+    assert hard["TyreLife_MEDIUM"] == 0 and hard["TyreLife_SOFT"] == 0
+
+
+def test_sector_times_are_not_features():
+    assert not any("Sector" in name for name in CATEGORICAL + NUMERIC)
+
+
+def test_committed_races_build_into_one_dataset():
+    dataset = build_dataset()
+    assert set(dataset["Race"]) == set(RACES)
+    assert not dataset[CATEGORICAL + NUMERIC + [TARGET]].isna().any().any()

@@ -1,199 +1,157 @@
 """
-FastAPI service for F1 Lap Time Prediction.
-Serves predictions and race analysis via REST API.
+FastAPI service for F1 lap-time prediction and race analysis.
+
+On start-up it loads the saved model, or fits one from the committed race
+data if none has been saved, so the service works straight after a clone.
 """
 
-import sys
+import json
 import os
+import sys
 from contextlib import asynccontextmanager
+from typing import Literal, Optional
 
-import pandas as pd
-import numpy as np
-from fastapi import FastAPI, HTTPException, Query
-from pydantic import BaseModel
-
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
-
-from model import load_model, evaluate_model
-from feature_engineering import COMPOUND_MAP
-from analysis import (
-    estimate_fuel_burn, estimate_tyre_degradation,
-    decompose_driver_pace, simulate_stint
-)
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, Field, model_validator
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(BASE_DIR, 'data', 'processed')
+sys.path.insert(0, os.path.join(BASE_DIR, "src"))
 
+from analysis import expected_stint_time, fit_race_effects
+from feature_engineering import build_dataset
+from model import load_model, predict_seconds, train_final
+from openf1_loader import load_race
+from races import RACES
+
+EVALUATION_PATH = os.path.join(BASE_DIR, "results", "evaluation.json")
 _state = {}
+
+
+def _best_model_kind():
+    if os.path.exists(EVALUATION_PATH):
+        with open(EVALUATION_PATH) as handle:
+            return json.load(handle)["best_model"]
+    return "linear"
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    _state['model'] = load_model()
-    data_path = os.path.join(DATA_DIR, 'cota_2024_features.csv')
-    if os.path.exists(data_path):
-        _state['data'] = pd.read_csv(data_path)
-    else:
-        _state['data'] = None
+    dataset = build_dataset()
+    _state["drivers"] = sorted(dataset["Driver"].unique())
+    _state["model"] = load_model() or train_final(dataset, _best_model_kind())
+    _state["effects"] = {}
     yield
     _state.clear()
 
 
 app = FastAPI(
     title="F1 Lap Time Prediction API",
-    description="ML-based lap time prediction and race performance analysis (COTA 2024)",
-    version="1.0.0",
+    description="Lap-time prediction and per-race fuel, tyre and pace analysis (2024 season)",
+    version="2.0.0",
     lifespan=lifespan,
 )
 
 
 class PredictRequest(BaseModel):
-    driver_encoded: int
-    compound: str = "MEDIUM"
-    tyre_life: float = 10.0
-    fuel_load_proxy: float = 40.0
+    driver: str = Field(description="Three-letter code, e.g. VER. Unknown drivers are "
+                                    "treated as an average driver.")
+    compound: Literal["SOFT", "MEDIUM", "HARD"]
+    tyre_life: float = Field(ge=0, le=80, description="Laps already done on this set")
+    lap_number: int = Field(ge=1)
+    total_laps: int = Field(ge=1, le=100)
+    reference_lap_time: float = Field(gt=0, description="Typical clean race lap at this "
+                                                         "circuit, in seconds")
+
+    @model_validator(mode="before")
+    @classmethod
+    def _upper_case_compound(cls, data):
+        if isinstance(data, dict) and isinstance(data.get("compound"), str):
+            data = {**data, "compound": data["compound"].upper()}
+        return data
+
+    @model_validator(mode="after")
+    def _lap_within_race(self):
+        if self.lap_number > self.total_laps:
+            raise ValueError("lap_number cannot be greater than total_laps")
+        return self
 
 
 class StintRequest(BaseModel):
-    compound: str = "MEDIUM"
-    stint_length: int = 20
-    base_pace: float = 99.0
+    race: str
+    compound: str
+    stint_length: int
+    start_lap: int
+    base_pace: Optional[float] = None
 
 
-class HealthResponse(BaseModel):
-    status: str
-    model_loaded: bool
-    data_loaded: bool
-    data_rows: int
+def _effects(race):
+    if race not in RACES:
+        raise HTTPException(status_code=404, detail=f"Unknown race. Choose from {sorted(RACES)}.")
+    if race not in _state["effects"]:
+        _state["effects"][race] = fit_race_effects(load_race(race))
+    return _state["effects"][race]
 
 
-@app.get("/health", response_model=HealthResponse)
+@app.get("/health")
 async def health():
-    return HealthResponse(
-        status="healthy",
-        model_loaded=_state.get('model') is not None,
-        data_loaded=_state.get('data') is not None,
-        data_rows=len(_state['data']) if _state.get('data') is not None else 0,
-    )
+    return {"status": "healthy", "model_loaded": _state.get("model") is not None,
+            "races": len(RACES)}
+
+
+@app.get("/races")
+async def list_races():
+    return {"races": sorted(RACES)}
+
+
+@app.get("/drivers")
+async def list_drivers():
+    return {"drivers": _state["drivers"]}
 
 
 @app.post("/predict")
 async def predict_lap_time(request: PredictRequest):
-    model = _state.get('model')
-    if model is None:
-        raise HTTPException(status_code=503, detail="Model not loaded. Train first: python src/train.py")
-
-    compound_encoded = COMPOUND_MAP.get(request.compound.upper(), 1)
-    tyre_life_squared = request.tyre_life ** 2
-
-    features = np.array([[
-        request.driver_encoded,
-        compound_encoded,
-        request.tyre_life,
-        tyre_life_squared,
-        request.fuel_load_proxy,
-    ]])
-
-    prediction = model.predict(features)[0]
-
+    seconds = predict_seconds(
+        _state["model"], request.driver.upper(), request.compound, request.tyre_life,
+        request.lap_number, request.total_laps, request.reference_lap_time,
+    )
     return {
-        "predicted_lap_time": round(float(prediction), 3),
-        "inputs": {
-            "driver_encoded": request.driver_encoded,
-            "compound": request.compound,
-            "tyre_life": request.tyre_life,
-            "fuel_load_proxy": request.fuel_load_proxy,
+        "predicted_lap_time": round(seconds, 3),
+        "relative_to_reference_pct": round(seconds / request.reference_lap_time * 100, 3),
+        "inputs": request.model_dump(),
+    }
+
+
+@app.get("/analysis/{race}")
+async def race_analysis(race: str):
+    effects = _effects(race)
+    return {
+        "race": race,
+        "fuel_effect_per_lap": round(effects["fuel_effect_per_lap"], 4),
+        "degradation": {
+            compound: {"rate_per_lap": round(info["rate_per_lap"], 4),
+                       "offset": round(info["offset"], 3), "n_laps": info["n_laps"]}
+            for compound, info in effects["degradation"].items()
         },
-    }
-
-
-@app.get("/analysis/pace")
-async def driver_pace_analysis():
-    data = _state.get('data')
-    if data is None:
-        raise HTTPException(status_code=503, detail="No race data loaded")
-
-    df = data.copy()
-    if 'LapNumber' not in df.columns:
-        df['LapNumber'] = df.groupby('Driver').cumcount() + 1
-
-    pace = decompose_driver_pace(df)
-    return {
-        "race": "COTA 2024",
-        "rankings": [
-            {
-                "driver": row['Driver'],
-                "pace_delta": round(row['PaceDelta'], 3),
-            }
-            for _, row in pace.iterrows()
-        ],
-    }
-
-
-@app.get("/analysis/degradation")
-async def degradation_analysis():
-    data = _state.get('data')
-    if data is None:
-        raise HTTPException(status_code=503, detail="No race data loaded")
-
-    results = estimate_tyre_degradation(data)
-    return {
-        "race": "COTA 2024",
-        "compounds": {
-            compound: {
-                "degradation_rate_per_lap": round(info['degradation_rate'], 4),
-                "r2": round(info['r2'], 3),
-                "sample_laps": info['n_laps'],
-            }
-            for compound, info in results.items()
-        },
-    }
-
-
-@app.get("/analysis/fuel")
-async def fuel_analysis():
-    data = _state.get('data')
-    if data is None:
-        raise HTTPException(status_code=503, detail="No race data loaded")
-
-    if 'LapNumber' not in data.columns:
-        data['LapNumber'] = data.groupby('Driver').cumcount() + 1
-
-    result = estimate_fuel_burn(data)
-    return {
-        "race": "COTA 2024",
-        "fuel_effect_per_lap": round(result['fuel_effect_per_lap'], 4),
-        "r2": round(result['r2'], 3),
-        "total_improvement_over_race": round(result['total_improvement'], 2),
+        "not_fitted": effects["not_fitted"],
+        "driver_pace": {d: round(p, 3) for d, p in effects["driver_pace"].items()},
+        "residual_std": round(effects["residual_std"], 3),
     }
 
 
 @app.post("/predict/stint")
 async def predict_stint(request: StintRequest):
-    result = simulate_stint(
-        compound=request.compound.upper(),
-        stint_length=request.stint_length,
-        base_pace=request.base_pace,
-    )
+    effects = _effects(request.race)
+    try:
+        stint = expected_stint_time(effects, request.compound, request.stint_length,
+                                    request.start_lap, request.base_pace)
+    except ValueError as error:
+        raise HTTPException(status_code=400, detail=str(error))
     return {
-        "compound": result['compound'],
-        "stint_length": result['stint_length'],
-        "mean_total_time": round(result['mean'], 2),
-        "std": round(result['std'], 2),
-        "mean_lap_time": round(result['mean'] / result['stint_length'], 3),
-    }
-
-
-@app.get("/drivers")
-async def list_drivers():
-    data = _state.get('data')
-    if data is None:
-        raise HTTPException(status_code=503, detail="No race data loaded")
-
-    drivers = data[['Driver', 'DriverEncoded']].drop_duplicates().sort_values('DriverEncoded')
-    return {
-        "drivers": [
-            {"abbreviation": row['Driver'], "encoded": int(row['DriverEncoded'])}
-            for _, row in drivers.iterrows()
-        ],
+        "race": request.race,
+        "compound": stint["compound"],
+        "stint_length": stint["stint_length"],
+        "start_lap": stint["start_lap"],
+        "total_time": round(stint["total_time"], 2),
+        "mean_lap_time": round(stint["total_time"] / stint["stint_length"], 3),
+        "lap_times": [round(t, 3) for t in stint["lap_times"]],
     }

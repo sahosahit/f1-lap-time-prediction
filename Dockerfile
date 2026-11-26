@@ -8,7 +8,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src/ src/
 COPY api/ api/
 COPY models/ models/
-COPY data/processed/ data/processed/
+COPY data/races/ data/races/
+COPY results/ results/
 
 EXPOSE 8000
 

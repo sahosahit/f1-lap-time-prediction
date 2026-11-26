@@ -1,52 +1,62 @@
 """
-Feature engineering for lap time prediction.
+Turn race lap tables into a dataset for lap-time models.
+
+Lap times at different circuits are on different scales (about 80 s at
+Monza, 100 s at Austin), so the target is the lap time as a percentage of
+that race's median clean lap. The models learn how lap time moves with
+tyres, fuel and driver, not how long a lap of a given circuit is.
+
+Sector times are deliberately not features: they are parts of the lap time
+being predicted.
 """
 
 import pandas as pd
-import numpy as np
+
+from openf1_loader import load_race
+from races import RACES
+
+OUTLIER_FACTOR = 1.07
+COMPOUNDS = ("SOFT", "MEDIUM", "HARD")
+CATEGORICAL = ["Driver", "Compound"]
+NUMERIC = ["TyreLife", "FuelFraction"] + [f"TyreLife_{c}" for c in COMPOUNDS]
+TARGET = "RelativeLapTime"
 
 
-COMPOUND_MAP = {'SOFT': 0, 'MEDIUM': 1, 'HARD': 2}
-
-
-def encode_compounds(series):
-    """Map tyre compound names to numeric values."""
-    return series.map(COMPOUND_MAP).fillna(1).astype(int)
-
-
-def encode_drivers(series):
-    """Label encode driver abbreviations."""
-    unique_drivers = sorted(series.unique())
-    mapping = {driver: i for i, driver in enumerate(unique_drivers)}
-    return series.map(mapping)
-
-
-def create_features(laps_df, total_laps=56):
+def clean_laps(laps):
     """
-    Create ML features from cleaned lap data.
-
-    Args:
-        laps_df: Cleaned DataFrame with lap timing data
-        total_laps: Total race laps (for fuel proxy calculation)
-
-    Returns:
-        DataFrame with features and target (LapTimeSec)
+    Laps that show the car's real pace: no pit in-laps or out-laps, no
+    standing-start lap, no safety-car laps, and nothing slower than 107% of
+    the driver's median (spins, damage, heavy traffic).
     """
-    df = laps_df.copy()
+    keep = ~(laps["IsPitInLap"] | laps["IsPitOutLap"] | laps["Neutralised"]
+             | (laps["LapNumber"] == 1))
+    kept = laps[keep]
+    median = kept.groupby("Driver")["LapTimeSec"].transform("median")
+    return kept[kept["LapTimeSec"] <= OUTLIER_FACTOR * median]
 
-    if 'Abbreviation' in df.columns:
-        df['Driver'] = df['Abbreviation']
 
-    df['DriverEncoded'] = encode_drivers(df['Driver'])
-    df['CompoundEncoded'] = encode_compounds(df['Compound'])
-    df['TyreLife'] = df['TyreLife'].astype(float) if 'TyreLife' in df.columns else df.groupby(['Driver', 'Stint']).cumcount().astype(float)
-    df['TyreLifeSquared'] = df['TyreLife'] ** 2
-    df['FuelLoadProxy'] = total_laps - df['LapNumber'].astype(float)
+def add_model_inputs(frame):
+    """Columns derived from Compound and TyreLife that every model needs."""
+    frame = frame.copy()
+    for compound in COMPOUNDS:
+        frame[f"TyreLife_{compound}"] = frame["TyreLife"].where(frame["Compound"] == compound, 0.0)
+    return frame
 
-    feature_cols = ['DriverEncoded', 'CompoundEncoded', 'TyreLife', 'TyreLifeSquared', 'FuelLoadProxy']
-    target_col = 'LapTimeSec'
 
-    result = df[feature_cols + [target_col, 'Driver', 'Compound']].copy()
-    result = result.dropna(subset=feature_cols + [target_col])
+def race_features(laps):
+    """Modelling rows for one race."""
+    clean = clean_laps(laps).copy()
+    reference = clean["LapTimeSec"].median()
+    clean["RefLapTime"] = reference
+    clean["FuelFraction"] = (clean["TotalLaps"] - clean["LapNumber"]) / clean["TotalLaps"]
+    clean[TARGET] = clean["LapTimeSec"] / reference * 100.0
+    clean["TyreLife"] = clean["TyreLife"].astype(float)
+    columns = ["Race", "Driver", "LapNumber", "TotalLaps", "Compound", "TyreLife", "FuelFraction",
+               "LapTimeSec", "RefLapTime", TARGET]
+    return add_model_inputs(clean[columns]).reset_index(drop=True)
 
-    return result
+
+def build_dataset(slugs=None):
+    """All committed races as one dataset."""
+    slugs = list(RACES) if slugs is None else slugs
+    return pd.concat([race_features(load_race(slug)) for slug in slugs], ignore_index=True)
